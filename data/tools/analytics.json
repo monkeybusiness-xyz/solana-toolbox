@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Solscan",
+    "description": "The most widely used Solana block explorer. Clean UI for transactions, accounts, tokens, and NFTs.",
+    "url": "https://solscan.io",
+    "github": null,
+    "tags": ["explorer", "transactions", "tokens"],
+    "audience": "both"
+  },
+  {
+    "name": "Solana Explorer",
+    "description": "The official Solana block explorer maintained by Solana Labs.",
+    "url": "https://explorer.solana.com",
+    "github": "https://github.com/solana-labs/explorer",
+    "tags": ["explorer", "official"],
+    "audience": "both"
+  },
+  {
+    "name": "Birdeye",
+    "description": "DeFi analytics and trading platform. Token charts, wallet analytics, and portfolio tracking.",
+    "url": "https://birdeye.so",
+    "github": null,
+    "tags": ["defi", "analytics", "charts", "portfolio"],
+    "audience": "both"
+  },
+  {
+    "name": "Step Finance",
+    "description": "Solana portfolio management dashboard. Visualize your positions, transactions, and LP holdings.",
+    "url": "https://step.finance",
+    "github": "https://github.com/step-finance",
+    "tags": ["portfolio", "dashboard", "defi"],
+    "audience": "user"
+  },
+  {
+    "name": "Dune Analytics (Solana)",
+    "description": "Write custom SQL queries against indexed Solana data. Community dashboards for any protocol.",
+    "url": "https://dune.com",
+    "github": null,
+    "tags": ["sql", "analytics", "dashboards", "on-chain-data"],
+    "audience": "both"
+  },
+  {
+    "name": "Flipside Crypto",
+    "description": "On-chain analytics platform with Solana data. SQL-based queries and community dashboards.",
+    "url": "https://flipsidecrypto.xyz",
+    "github": null,
+    "tags": ["sql", "analytics", "on-chain-data"],
+    "audience": "both"
+  },
+  {
+    "name": "Orca Whirlpool Analytics",
+    "description": "Real-time analytics for Orca's Whirlpool concentrated liquidity pools.",
+    "url": "https://www.orca.so",
+    "github": "https://github.com/orca-so",
+    "tags": ["defi", "liquidity", "analytics"],
+    "audience": "user"
+  }
+]

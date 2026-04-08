@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Token Extensions (Token-2022)",
+    "description": "Solana's next-gen token program with transfer fees, confidential transfers, interest-bearing tokens, and more.",
+    "url": "https://spl.solana.com/token-2022",
+    "github": "https://github.com/solana-labs/solana-program-library",
+    "tags": ["token-program", "token-2022", "spl", "official"],
+    "audience": "developer"
+  },
+  {
+    "name": "pump.fun",
+    "description": "Viral token launchpad with a bonding curve mechanism. Launch a token in seconds.",
+    "url": "https://pump.fun",
+    "github": null,
+    "tags": ["launchpad", "meme-coins", "bonding-curve"],
+    "audience": "user"
+  },
+  {
+    "name": "Metaplex Token Metadata",
+    "description": "The standard for on-chain token metadata on Solana. Supports fungible tokens, NFTs, and editions.",
+    "url": "https://developers.metaplex.com/token-metadata",
+    "github": "https://github.com/metaplex-foundation/mpl-token-metadata",
+    "tags": ["metadata", "standard", "fungible", "nft"],
+    "audience": "developer"
+  },
+  {
+    "name": "Streamflow",
+    "description": "Token vesting, streaming payments, and locks. Widely used for team/investor token distribution.",
+    "url": "https://streamflow.finance",
+    "github": "https://github.com/streamflow-finance",
+    "tags": ["vesting", "streaming", "locks", "distribution"],
+    "audience": "both"
+  },
+  {
+    "name": "Squads",
+    "description": "Multisig and on-chain treasury management for teams. Control tokens, programs, and funds with a multisig.",
+    "url": "https://squads.so",
+    "github": "https://github.com/Squads-Protocol",
+    "tags": ["multisig", "treasury", "governance", "security"],
+    "audience": "both"
+  },
+  {
+    "name": "SPL Token UI",
+    "description": "Simple web interface for creating and managing SPL tokens without writing any code.",
+    "url": "https://spl-token-ui.com",
+    "github": null,
+    "tags": ["no-code", "spl", "creation"],
+    "audience": "user"
+  }
+]

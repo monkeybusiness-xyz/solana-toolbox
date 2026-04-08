@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --color-sol-purple: #9945FF;
+  --color-sol-green: #14F195;
+  --color-sol-dark: #0A0A0F;
+  --color-sol-card: #111118;
+  --color-sol-border: #1E1E2E;
+  --color-sol-muted: #6B7280;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-sol-dark);
+  color: #E2E8F0;
+}

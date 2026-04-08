@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Soteria",
+    "description": "Static analysis tool for detecting common vulnerabilities in Solana/Anchor smart contracts.",
+    "url": "https://github.com/simonlucalandi/solana-soteria",
+    "github": "https://github.com/simonlucalandi/solana-soteria",
+    "tags": ["static-analysis", "rust", "anchor", "linting"],
+    "audience": "developer"
+  },
+  {
+    "name": "Anchor's built-in constraints",
+    "description": "Anchor's account validation constraints (has_one, constraint, owner, etc.) that prevent common attack vectors.",
+    "url": "https://www.anchor-lang.com/docs/account-constraints",
+    "github": "https://github.com/coral-xyz/anchor",
+    "tags": ["anchor", "constraints", "validation"],
+    "audience": "developer"
+  },
+  {
+    "name": "Sec3 (formerly Soteria)",
+    "description": "Automated smart contract auditing tool and security platform for Solana programs.",
+    "url": "https://sec3.dev",
+    "github": null,
+    "tags": ["audit", "automated", "security-platform"],
+    "audience": "developer"
+  },
+  {
+    "name": "OtterSec",
+    "description": "Leading Solana security auditing firm. Audited Jupiter, Marinade, Drift, and many top protocols.",
+    "url": "https://osec.io",
+    "github": "https://github.com/otter-sec",
+    "tags": ["audit-firm", "security-research"],
+    "audience": "developer"
+  },
+  {
+    "name": "Neodyme",
+    "description": "Security research firm specializing in Solana. Known for discovering critical vulnerabilities in core programs.",
+    "url": "https://neodyme.io",
+    "github": "https://github.com/neodyme-labs",
+    "tags": ["audit-firm", "security-research"],
+    "audience": "developer"
+  },
+  {
+    "name": "Solana Security Workshop",
+    "description": "Open-source collection of vulnerable Solana programs for learning common exploit patterns.",
+    "url": "https://github.com/coral-xyz/sealevel-attacks",
+    "github": "https://github.com/coral-xyz/sealevel-attacks",
+    "tags": ["education", "ctf", "vulnerabilities", "learning"],
+    "audience": "developer"
+  }
+]

@@ -1,0 +1,56 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Solana Toolbox',
+  description = 'A curated directory of tools, libraries, and resources for building on and using Solana.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="min-h-screen">
+    <header class="border-b border-[#1E1E2E] sticky top-0 z-50 backdrop-blur-sm bg-[#0A0A0F]/90">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3 group">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #9945FF, #14F195);">
+            <span class="text-black font-bold text-sm">S</span>
+          </div>
+          <span class="font-semibold text-white text-lg tracking-tight">
+            Solana <span class="text-transparent bg-clip-text" style="background-image: linear-gradient(90deg, #9945FF, #14F195);">Toolbox</span>
+          </span>
+        </a>
+        <nav class="flex items-center gap-6 text-sm text-gray-400">
+          <a href="https://github.com/yourusername/solana-toolbox" target="_blank" rel="noopener" class="hover:text-white transition-colors">
+            Submit a tool
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <slot />
+
+    <footer class="border-t border-[#1E1E2E] mt-24 py-10 text-center text-sm text-gray-500">
+      <div class="max-w-7xl mx-auto px-4">
+        <p>
+          solana-toolbox.com — community curated.
+          <a href="https://github.com/yourusername/solana-toolbox" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors ml-1">
+            Add or improve a listing →
+          </a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

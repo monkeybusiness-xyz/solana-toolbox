@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Solana Web3.js",
+    "description": "The official JavaScript/TypeScript SDK for interacting with the Solana JSON RPC API.",
+    "url": "https://solana-labs.github.io/solana-web3.js/",
+    "github": "https://github.com/solana-labs/solana-web3.js",
+    "tags": ["javascript", "typescript", "sdk", "official"],
+    "audience": "developer"
+  },
+  {
+    "name": "Anchor",
+    "description": "A framework for Solana's Sealevel runtime providing several convenient developer tools and an IDL specification.",
+    "url": "https://www.anchor-lang.com/",
+    "github": "https://github.com/coral-xyz/anchor",
+    "tags": ["rust", "framework", "smart-contracts", "idl"],
+    "audience": "developer"
+  },
+  {
+    "name": "Solana Python (solders / solana-py)",
+    "description": "Python bindings and SDK for Solana. solders provides fast Rust-backed types; solana-py provides the RPC client.",
+    "url": "https://michaelhly.github.io/solana-py/",
+    "github": "https://github.com/michaelhly/solana-py",
+    "tags": ["python", "sdk"],
+    "audience": "developer"
+  },
+  {
+    "name": "Gill",
+    "description": "A lightweight, modern TypeScript library for Solana with a minimal footprint and tree-shakable API.",
+    "url": "https://gill.site/",
+    "github": "https://github.com/solana-foundation/gill",
+    "tags": ["typescript", "sdk", "lightweight"],
+    "audience": "developer"
+  },
+  {
+    "name": "Solana Go",
+    "description": "Go client library and utilities for the Solana blockchain.",
+    "url": "https://pkg.go.dev/github.com/gagliardetto/solana-go",
+    "github": "https://github.com/gagliardetto/solana-go",
+    "tags": ["go", "sdk"],
+    "audience": "developer"
+  },
+  {
+    "name": "Metaplex JS SDK",
+    "description": "JavaScript SDK for interacting with Metaplex programs — NFT minting, auction houses, and more.",
+    "url": "https://developers.metaplex.com/",
+    "github": "https://github.com/metaplex-foundation/umi",
+    "tags": ["javascript", "typescript", "nft", "metaplex"],
+    "audience": "developer"
+  },
+  {
+    "name": "Seahorse",
+    "description": "Write Solana programs in Python. Seahorse compiles Python code to Anchor/Rust under the hood.",
+    "url": "https://seahorse-lang.org/",
+    "github": "https://github.com/ameliatastic/seahorse-lang",
+    "tags": ["python", "smart-contracts", "transpiler"],
+    "audience": "developer"
+  },
+  {
+    "name": "Solana Bankrun",
+    "description": "A fast and lightweight framework for testing Solana programs in NodeJS using the solana-program-test crate.",
+    "url": "https://kevinheavey.github.io/solana-bankrun/",
+    "github": "https://github.com/kevinheavey/solana-bankrun",
+    "tags": ["testing", "javascript", "typescript"],
+    "audience": "developer"
+  }
+]

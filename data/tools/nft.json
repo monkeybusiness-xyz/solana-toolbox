@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Metaplex",
+    "description": "The standard protocol for NFTs on Solana. Includes Token Metadata, Candy Machine, and Auction House programs.",
+    "url": "https://www.metaplex.com",
+    "github": "https://github.com/metaplex-foundation",
+    "tags": ["protocol", "metadata", "minting", "marketplace"],
+    "audience": "both"
+  },
+  {
+    "name": "Magic Eden",
+    "description": "The largest NFT marketplace on Solana. Buy, sell, and discover NFTs with creator royalties.",
+    "url": "https://magiceden.io",
+    "github": null,
+    "tags": ["marketplace", "trading"],
+    "audience": "user"
+  },
+  {
+    "name": "Candy Machine",
+    "description": "Metaplex's on-chain NFT minting program. Powers the majority of NFT launches on Solana.",
+    "url": "https://developers.metaplex.com/candy-machine",
+    "github": "https://github.com/metaplex-foundation/mpl-candy-machine",
+    "tags": ["minting", "launchpad", "metaplex"],
+    "audience": "developer"
+  },
+  {
+    "name": "Tensor",
+    "description": "Advanced NFT trading platform with pro-grade tooling, sweeping, and collection analytics.",
+    "url": "https://tensor.trade",
+    "github": "https://github.com/tensor-foundation",
+    "tags": ["marketplace", "trading", "analytics"],
+    "audience": "both"
+  },
+  {
+    "name": "Compressed NFTs (cNFTs)",
+    "description": "Metaplex's Bubblegum program for minting millions of NFTs at near-zero cost using state compression.",
+    "url": "https://developers.metaplex.com/bubblegum",
+    "github": "https://github.com/metaplex-foundation/mpl-bubblegum",
+    "tags": ["compression", "minting", "metaplex", "bubblegum"],
+    "audience": "developer"
+  },
+  {
+    "name": "Underdog Protocol",
+    "description": "API-first platform for minting and managing NFTs programmatically at scale.",
+    "url": "https://underdogprotocol.com",
+    "github": "https://github.com/UnderdogProtocol",
+    "tags": ["api", "minting", "compressed-nfts"],
+    "audience": "developer"
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "developer-sdks",
+    "name": "Developer SDKs & Frameworks",
+    "description": "Libraries and frameworks for building on Solana",
+    "icon": "⚙️"
+  },
+  {
+    "slug": "defi-trading",
+    "name": "DeFi & Trading",
+    "description": "DEXes, aggregators, trading bots, and yield tools",
+    "icon": "📈"
+  },
+  {
+    "slug": "nft",
+    "name": "NFT Tools",
+    "description": "Minting, marketplaces, metadata, and NFT analytics",
+    "icon": "🎨"
+  },
+  {
+    "slug": "wallets",
+    "name": "Wallets",
+    "description": "Browser extensions, mobile, hardware, and embedded wallets",
+    "icon": "👛"
+  },
+  {
+    "slug": "infrastructure",
+    "name": "RPC & Infrastructure",
+    "description": "Node providers, indexers, and data APIs",
+    "icon": "🏗️"
+  },
+  {
+    "slug": "analytics",
+    "name": "Analytics & Explorers",
+    "description": "Block explorers, dashboards, and on-chain analytics",
+    "icon": "🔍"
+  },
+  {
+    "slug": "security",
+    "name": "Security & Auditing",
+    "description": "Static analysis, formal verification, and audit firms",
+    "icon": "🔒"
+  },
+  {
+    "slug": "token-tools",
+    "name": "Token Tools",
+    "description": "Token creation, launchpads, metadata, and management",
+    "icon": "🪙"
+  }
+]

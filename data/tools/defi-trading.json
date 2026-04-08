@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Jupiter",
+    "description": "The leading DEX aggregator on Solana. Finds the best swap routes across all major liquidity sources.",
+    "url": "https://jup.ag",
+    "github": "https://github.com/jup-ag",
+    "tags": ["dex", "aggregator", "swap"],
+    "audience": "both"
+  },
+  {
+    "name": "Raydium",
+    "description": "Automated market maker (AMM) and liquidity provider built on Solana's central order book.",
+    "url": "https://raydium.io",
+    "github": "https://github.com/raydium-io",
+    "tags": ["amm", "dex", "liquidity"],
+    "audience": "both"
+  },
+  {
+    "name": "Jito",
+    "description": "MEV infrastructure for Solana including a block engine, bundle submission, and JitoSOL liquid staking.",
+    "url": "https://jito.network",
+    "github": "https://github.com/jito-foundation",
+    "tags": ["mev", "staking", "infrastructure"],
+    "audience": "both"
+  },
+  {
+    "name": "Hummingbot",
+    "description": "Open-source market making and arbitrage trading bot framework with Solana connector support.",
+    "url": "https://hummingbot.org",
+    "github": "https://github.com/hummingbot/hummingbot",
+    "tags": ["trading-bot", "market-making", "arbitrage"],
+    "audience": "developer"
+  },
+  {
+    "name": "Marinade Finance",
+    "description": "Liquid staking protocol for SOL. Stake SOL and receive mSOL to use across DeFi.",
+    "url": "https://marinade.finance",
+    "github": "https://github.com/marinade-finance",
+    "tags": ["staking", "liquid-staking", "yield"],
+    "audience": "both"
+  },
+  {
+    "name": "Kamino Finance",
+    "description": "Automated liquidity vaults and lending protocol on Solana. Optimizes concentrated liquidity positions.",
+    "url": "https://kamino.finance",
+    "github": "https://github.com/Kamino-Finance",
+    "tags": ["lending", "liquidity", "yield", "vaults"],
+    "audience": "both"
+  },
+  {
+    "name": "Meteora",
+    "description": "Dynamic liquidity market maker (DLMM) with concentrated liquidity and dynamic fees.",
+    "url": "https://meteora.ag",
+    "github": "https://github.com/MeteoraAg",
+    "tags": ["amm", "dlmm", "liquidity", "dex"],
+    "audience": "both"
+  }
+]

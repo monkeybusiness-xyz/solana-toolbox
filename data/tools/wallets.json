@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Phantom",
+    "description": "The most popular Solana wallet. Browser extension and mobile app with built-in swap and NFT support.",
+    "url": "https://phantom.app",
+    "github": null,
+    "tags": ["browser-extension", "mobile", "popular"],
+    "audience": "user"
+  },
+  {
+    "name": "Solflare",
+    "description": "Feature-rich Solana wallet with staking, NFTs, and hardware wallet support.",
+    "url": "https://solflare.com",
+    "github": null,
+    "tags": ["browser-extension", "mobile", "staking", "hardware"],
+    "audience": "user"
+  },
+  {
+    "name": "Backpack",
+    "description": "Next-gen wallet with xNFT app platform, multi-chain support, and built-in dApp browser.",
+    "url": "https://backpack.app",
+    "github": "https://github.com/coral-xyz/backpack",
+    "tags": ["browser-extension", "mobile", "xnft", "multi-chain"],
+    "audience": "both"
+  },
+  {
+    "name": "Ledger",
+    "description": "Hardware wallet with Solana support via the Solana Ledger app. Maximum security for cold storage.",
+    "url": "https://ledger.com",
+    "github": "https://github.com/LedgerHQ/app-solana",
+    "tags": ["hardware", "cold-storage", "security"],
+    "audience": "user"
+  },
+  {
+    "name": "Wallet Adapter",
+    "description": "Modular TypeScript wallet adapters for Solana dApps. Supports all major wallets out of the box.",
+    "url": "https://github.com/anza-xyz/wallet-adapter",
+    "github": "https://github.com/anza-xyz/wallet-adapter",
+    "tags": ["sdk", "typescript", "react", "developer-tool"],
+    "audience": "developer"
+  },
+  {
+    "name": "Privy",
+    "description": "Embedded wallet infrastructure. Let users sign in with email or socials and get a Solana wallet automatically.",
+    "url": "https://privy.io",
+    "github": null,
+    "tags": ["embedded-wallet", "auth", "web3-onboarding"],
+    "audience": "developer"
+  },
+  {
+    "name": "Dynamic",
+    "description": "Wallet and authentication platform for Web3 apps. Email login, social login, and multi-wallet support.",
+    "url": "https://dynamic.xyz",
+    "github": null,
+    "tags": ["embedded-wallet", "auth", "web3-onboarding"],
+    "audience": "developer"
+  }
+]

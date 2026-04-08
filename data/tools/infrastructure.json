@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Helius",
+    "description": "The most powerful Solana RPC and API platform. Enhanced APIs for DAS, webhooks, and priority fees.",
+    "url": "https://helius.dev",
+    "github": "https://github.com/helius-labs",
+    "tags": ["rpc", "api", "webhooks", "das"],
+    "audience": "developer"
+  },
+  {
+    "name": "QuickNode",
+    "description": "Multi-chain node provider with Solana support. Reliable RPC endpoints with add-on marketplace.",
+    "url": "https://quicknode.com",
+    "github": null,
+    "tags": ["rpc", "node-provider", "multi-chain"],
+    "audience": "developer"
+  },
+  {
+    "name": "Triton (RPC Pool)",
+    "description": "Dedicated Solana RPC infrastructure used by major protocols. High-performance and low-latency.",
+    "url": "https://triton.one",
+    "github": null,
+    "tags": ["rpc", "node-provider", "dedicated"],
+    "audience": "developer"
+  },
+  {
+    "name": "Shyft",
+    "description": "Solana API platform with DAS, transaction parsing, and webhook support for indexing on-chain events.",
+    "url": "https://shyft.to",
+    "github": "https://github.com/Shyft-to",
+    "tags": ["api", "indexing", "das", "webhooks"],
+    "audience": "developer"
+  },
+  {
+    "name": "The Graph (Solana)",
+    "description": "Decentralized indexing protocol with Solana subgraph support for querying on-chain data via GraphQL.",
+    "url": "https://thegraph.com",
+    "github": "https://github.com/graphprotocol",
+    "tags": ["indexing", "graphql", "subgraph"],
+    "audience": "developer"
+  },
+  {
+    "name": "Geyser Plugins",
+    "description": "Solana validator plugin interface for streaming real-time account and transaction updates.",
+    "url": "https://docs.solanalabs.com/validator/geyser",
+    "github": "https://github.com/solana-labs/solana",
+    "tags": ["streaming", "real-time", "validator", "plugin"],
+    "audience": "developer"
+  },
+  {
+    "name": "Yellowstone gRPC",
+    "description": "High-performance gRPC Geyser plugin for streaming real-time Solana data. Used by Helius, Triton, and others.",
+    "url": "https://github.com/rpcpool/yellowstone-grpc",
+    "github": "https://github.com/rpcpool/yellowstone-grpc",
+    "tags": ["grpc", "streaming", "geyser", "real-time"],
+    "audience": "developer"
+  }
+]
