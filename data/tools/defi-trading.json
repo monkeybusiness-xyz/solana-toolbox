@@ -54,5 +54,12 @@
     "github": "https://github.com/MeteoraAg",
     "tags": ["amm", "dlmm", "liquidity", "dex"],
     "audience": "both"
+  },
+  {
+    "name": "MonkeyTrade",
+    "description": "Web-based trading platform for Solana with copy trading and token discovery.",
+    "url": "https://monkeytrade.pro",
+    "tags": ["trading", "copy-trading", "token-discovery"],
+    "audience": "user"
   }
 ]

@@ -20,6 +20,14 @@ const {
     <meta name="description" content={description} />
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4VQYB5F5VC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4VQYB5F5VC');
+    </script>
   </head>
   <body class="min-h-screen">
     <header class="border-b border-[#1E1E2E] sticky top-0 z-50 backdrop-blur-sm bg-[#0A0A0F]/90">

@@ -56,11 +56,10 @@
     "audience": "developer"
   },
   {
-    "name": "Solana Bankrun",
-    "description": "A fast and lightweight framework for testing Solana programs in NodeJS using the solana-program-test crate.",
-    "url": "https://kevinheavey.github.io/solana-bankrun/",
-    "github": "https://github.com/kevinheavey/solana-bankrun",
-    "tags": ["testing", "javascript", "typescript"],
+    "name": "LiteSVM",
+    "description": "Fast and lightweight library for testing Solana programs. The recommended alternative to the deprecated solana-bankrun.",
+    "github": "https://github.com/LiteSVM/litesvm",
+    "tags": ["testing", "rust"],
     "audience": "developer"
   }
 ]
