@@ -36,7 +36,7 @@ const ogImage = image ? new URL(image, Astro.site).href : undefined;
     {ogImage && <meta property="og:image" content={ogImage} />}
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     {ogImage && <meta name="twitter:image" content={ogImage} />}
@@ -62,14 +62,19 @@ const ogImage = image ? new URL(image, Astro.site).href : undefined;
         },
       ],
     })} />
-    <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) — deferred to avoid blocking LCP -->
     <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4VQYB5F5VC"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-4VQYB5F5VC');
+      window.addEventListener('load', function() {
+        var s = document.createElement('script');
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-4VQYB5F5VC';
+        s.async = true;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-4VQYB5F5VC');
+      });
     </script>
   </head>
   <body class="min-h-screen">
@@ -94,12 +99,17 @@ const ogImage = image ? new URL(image, Astro.site).href : undefined;
     <slot />
 
     <footer class="border-t border-[#1E1E2E] mt-24 py-10 text-center text-sm text-gray-500">
-      <div class="max-w-7xl mx-auto px-4">
+      <div class="max-w-7xl mx-auto px-4 space-y-3">
         <p>
           solana-toolbox.com — community curated.
           <a href="https://github.com/monkeybusiness-xyz/solana-toolbox" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors ml-1">
             Add or improve a listing →
           </a>
+        </p>
+        <p class="flex items-center justify-center gap-4">
+          <a href="/about" class="hover:text-gray-300 transition-colors">About</a>
+          <a href="/privacy" class="hover:text-gray-300 transition-colors">Privacy policy</a>
+          <a href="/terms" class="hover:text-gray-300 transition-colors">Terms of use</a>
         </p>
       </div>
     </footer>

@@ -31,7 +31,10 @@ const itemLists = categories.map((cat) => ({
 }));
 ---
 
-<Base>
+<Base
+  description={`Discover ${totalTools}+ tools, libraries, and resources for building on and using Solana — SDKs, wallets, DeFi apps, RPC providers, block explorers, and more. Community curated and open source.`}
+  image="/og.png"
+>
   {itemLists.map(list => (
     <script type="application/ld+json" set:html={JSON.stringify(list)} />
   ))}
@@ -68,10 +71,10 @@ const itemLists = categories.map((cat) => ({
           <div class="flex items-center gap-3 mb-6 pb-4 border-b border-[#1E1E2E]">
             <span class="text-2xl">{cat.icon}</span>
             <div>
-              <h2 class="text-xl font-semibold text-white">{cat.name}</h2>
-              <p class="text-sm text-gray-500">{cat.description}</p>
+              <a href={`/${cat.slug}`} class="text-xl font-semibold text-white hover:text-[#14F195] transition-colors">{cat.name}</a>
+              <p class="text-sm text-gray-400">{cat.description}</p>
             </div>
-            <span class="ml-auto text-xs text-gray-600 font-medium">{tools.length} tools</span>
+            <span class="ml-auto text-xs text-gray-500 font-medium">{tools.length} tools</span>
           </div>
           <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {tools.map((tool: any) => (

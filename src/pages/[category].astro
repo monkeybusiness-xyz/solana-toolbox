@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro';
+import ToolCard from '../components/ToolCard.astro';
+import categories from '../../data/categories.json';
+
+export async function getStaticPaths() {
+  const toolFiles = import.meta.glob('../../data/tools/*.json', { eager: true });
+  const allTools: Record<string, any[]> = {};
+  for (const [path, mod] of Object.entries(toolFiles)) {
+    const slug = path.split('/').pop()!.replace('.json', '');
+    allTools[slug] = (mod as any).default;
+  }
+
+  return categories.map((cat) => ({
+    params: { category: cat.slug },
+    props: { cat, tools: allTools[cat.slug] ?? [] },
+  }));
+}
+
+interface Category {
+  slug: string;
+  name: string;
+  description: string;
+  icon: string;
+  prose: string[];
+}
+
+const { cat, tools }: { cat: Category; tools: any[] } = Astro.props;
+
+const title = `${cat.name} — Solana Toolbox`;
+const description = `${cat.description}. A curated list of ${tools.length} tools for building on and using Solana.`;
+---
+
+<Base title={title} description={description} image="/og.png">
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-16">
+    <!-- Breadcrumb -->
+    <nav class="text-sm text-gray-500 mb-10">
+      <a href="/" class="hover:text-gray-300 transition-colors">Solana Toolbox</a>
+      <span class="mx-2">›</span>
+      <span class="text-gray-400">{cat.name}</span>
+    </nav>
+
+    <!-- Header -->
+    <div class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="text-4xl">{cat.icon}</span>
+        <h1 class="text-3xl font-bold text-white">{cat.name}</h1>
+      </div>
+      <div class="space-y-4 text-gray-400 leading-relaxed text-base max-w-3xl">
+        {cat.prose.map((para: string) => <p>{para}</p>)}
+      </div>
+    </div>
+
+    <!-- Tools -->
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-sm font-medium text-gray-500 uppercase tracking-wider">{tools.length} tools</h2>
+    </div>
+    <div class="grid gap-4 sm:grid-cols-2">
+      {tools.map((tool: any) => (
+        <ToolCard {...tool} />
+      ))}
+    </div>
+
+    <!-- Back link -->
+    <div class="mt-16 pt-8 border-t border-[#1E1E2E]">
+      <a href="/" class="text-sm text-gray-500 hover:text-gray-300 transition-colors">
+        ← All categories
+      </a>
+    </div>
+  </main>
+</Base>
