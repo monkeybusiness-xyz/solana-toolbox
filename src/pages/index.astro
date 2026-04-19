@@ -12,9 +12,30 @@ for (const [path, mod] of Object.entries(toolFiles)) {
 }
 
 const totalTools = Object.values(allTools).reduce((sum, arr) => sum + arr.length, 0);
+
+const itemLists = categories.map((cat) => ({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "@id": `https://solana-toolbox.com/#list-${cat.slug}`,
+  "name": cat.name,
+  "description": cat.description,
+  "url": `https://solana-toolbox.com/#${cat.slug}`,
+  "numberOfItems": (allTools[cat.slug] ?? []).length,
+  "itemListElement": (allTools[cat.slug] ?? []).map((tool: any, i: number) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": tool.name,
+    "description": tool.description,
+    "url": tool.url ?? tool.github,
+  })),
+}));
 ---
 
 <Base>
+  {itemLists.map(list => (
+    <script type="application/ld+json" set:html={JSON.stringify(list)} />
+  ))}
+
   <!-- Hero -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-16 pb-12 text-center">
     <h1 class="text-4xl sm:text-5xl font-bold text-white tracking-tight mb-4">

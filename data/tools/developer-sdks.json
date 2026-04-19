@@ -58,6 +58,7 @@
   {
     "name": "LiteSVM",
     "description": "Fast and lightweight library for testing Solana programs. The recommended alternative to the deprecated solana-bankrun.",
+    "url": "https://github.com/LiteSVM/litesvm",
     "github": "https://github.com/LiteSVM/litesvm",
     "tags": ["testing", "rust"],
     "audience": "developer"

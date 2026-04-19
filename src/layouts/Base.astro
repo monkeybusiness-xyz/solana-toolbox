@@ -44,12 +44,26 @@ const ogImage = image ? new URL(image, Astro.site).href : undefined;
     <!-- JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Solana Toolbox",
-      "url": Astro.site?.href,
-      "description": description,
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://solana-toolbox.com/#organization",
+          "name": "Solana Toolbox",
+          "url": "https://solana-toolbox.com/",
+          "sameAs": ["https://github.com/monkeybusiness-xyz/solana-toolbox"],
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://solana-toolbox.com/#website",
+          "name": "Solana Toolbox",
+          "url": Astro.site?.href,
+          "description": description,
+          "publisher": { "@id": "https://solana-toolbox.com/#organization" },
+        },
+      ],
     })} />
     <!-- Google tag (gtag.js) -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4VQYB5F5VC"></script>
     <script>
       window.dataLayer = window.dataLayer || [];

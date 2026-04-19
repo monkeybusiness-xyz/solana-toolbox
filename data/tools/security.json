@@ -1,13 +1,5 @@
 [
   {
-    "name": "Soteria",
-    "description": "Static analysis tool for detecting common vulnerabilities in Solana/Anchor smart contracts.",
-    "url": "https://github.com/simonlucalandi/solana-soteria",
-    "github": "https://github.com/simonlucalandi/solana-soteria",
-    "tags": ["static-analysis", "rust", "anchor", "linting"],
-    "audience": "developer"
-  },
-  {
     "name": "Anchor's built-in constraints",
     "description": "Anchor's account validation constraints (has_one, constraint, owner, etc.) that prevent common attack vectors.",
     "url": "https://www.anchor-lang.com/docs/account-constraints",
