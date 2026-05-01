@@ -5,7 +5,8 @@
     "url": "https://jup.ag",
     "github": "https://github.com/jup-ag",
     "tags": ["dex", "aggregator", "swap"],
-    "audience": "both"
+    "audience": "both",
+    "note": "Where most swaps go."
   },
   {
     "name": "Raydium",

@@ -1,9 +1,6 @@
 ---
-import Base from '../layouts/Base.astro';
-import ToolCard from '../components/ToolCard.astro';
 import categories from '../../data/categories.json';
 
-// Load all tool files
 const toolFiles = import.meta.glob('../../data/tools/*.json', { eager: true });
 const allTools: Record<string, any[]> = {};
 for (const [path, mod] of Object.entries(toolFiles)) {
@@ -11,17 +8,28 @@ for (const [path, mod] of Object.entries(toolFiles)) {
   allTools[slug] = (mod as any).default;
 }
 
-const totalTools = Object.values(allTools).reduce((sum, arr) => sum + arr.length, 0);
+const catData = categories.map((cat: any, ci: number) => ({
+  ...cat,
+  letter: String.fromCharCode(65 + ci),
+  tools: allTools[cat.slug] ?? [],
+}));
 
-const itemLists = categories.map((cat) => ({
+const flatTools = catData.flatMap((c: any) => c.tools);
+const totalTools = flatTools.length;
+const totalOpen = flatTools.filter((t: any) => t.github).length;
+const totalPicks = flatTools.filter((t: any) => t.note).length;
+
+const description = `A curated catalog of ${totalTools}+ tools for building on and using Solana — organised, opinionated, updated when something better appears.`;
+
+const itemLists = catData.map((cat: any) => ({
   "@context": "https://schema.org",
   "@type": "ItemList",
   "@id": `https://solana-toolbox.com/#list-${cat.slug}`,
   "name": cat.name,
   "description": cat.description,
   "url": `https://solana-toolbox.com/#${cat.slug}`,
-  "numberOfItems": (allTools[cat.slug] ?? []).length,
-  "itemListElement": (allTools[cat.slug] ?? []).map((tool: any, i: number) => ({
+  "numberOfItems": cat.tools.length,
+  "itemListElement": cat.tools.map((tool: any, i: number) => ({
     "@type": "ListItem",
     "position": i + 1,
     "name": tool.name,
@@ -30,59 +38,770 @@ const itemLists = categories.map((cat) => ({
   })),
 }));
 ---
+<!doctype html>
+<html lang="en" id="ch">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <link rel="canonical" href="https://solana-toolbox.com/" />
+  <title>Solana Toolbox — A catalog of working tools</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-<Base
-  description={`Discover ${totalTools}+ tools, libraries, and resources for building on and using Solana — SDKs, wallets, DeFi apps, RPC providers, block explorers, and more. Community curated and open source.`}
-  image="/og.png"
->
-  {itemLists.map(list => (
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;0,6..72,800;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://solana-toolbox.com/" />
+  <meta property="og:title" content="Solana Toolbox" />
+  <meta property="og:description" content={description} />
+  <meta property="og:site_name" content="Solana Toolbox" />
+  <meta property="og:image" content="https://solana-toolbox.com/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Solana Toolbox" />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content="https://solana-toolbox.com/og.png" />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://solana-toolbox.com/#organization",
+        "name": "Solana Toolbox",
+        "url": "https://solana-toolbox.com/",
+        "sameAs": ["https://github.com/monkeybusiness-xyz/solana-toolbox"],
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://solana-toolbox.com/#website",
+        "name": "Solana Toolbox",
+        "url": "https://solana-toolbox.com/",
+        "description": description,
+        "publisher": { "@id": "https://solana-toolbox.com/#organization" },
+      },
+    ],
+  })} />
+  {itemLists.map((list: any) => (
     <script type="application/ld+json" set:html={JSON.stringify(list)} />
   ))}
 
-  <!-- Hero -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-16 pb-12 text-center">
-    <h1 class="text-4xl sm:text-5xl font-bold text-white tracking-tight mb-4">
-      The Solana
-      <span class="text-transparent bg-clip-text" style="background-image: linear-gradient(90deg, #9945FF, #14F195);">
-        Toolbox
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <script>
+    window.addEventListener('load', function() {
+      var s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-4VQYB5F5VC';
+      s.async = true;
+      document.head.appendChild(s);
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      function gtag(...args: any[]) { (window as any).dataLayer.push(args); }
+      gtag('js', new Date());
+      gtag('config', 'G-4VQYB5F5VC');
+    });
+  </script>
+
+  <style>
+    /* ── Theme variables ── */
+    :root {
+      --bg: #F1EADB;
+      --ink: #0F1A14;
+      --ink-soft: #4D5A52;
+      --rule: rgba(15,26,20,0.12);
+      --rule-strong: #0F1A14;
+      --accent: #0B6B3A;
+      --accent2: #C5158A;
+      --pick: #C5158A;
+      --pick-border: #C5158A;
+      --sel-bg: #0F1A14;
+      --sel-fg: #F1EADB;
+      --glow: none;
+      --desc-color: var(--ink);
+    }
+
+    #ch.dark {
+      --bg: #0A0A0F;
+      --ink: #E8E4D8;
+      --ink-soft: #9A93A8;
+      --rule: rgba(232,228,216,0.10);
+      --rule-strong: rgba(232,228,216,0.40);
+      --accent: #14F195;
+      --accent2: #9945FF;
+      --pick: #9945FF;
+      --pick-border: #9945FF;
+      --sel-bg: #14F195;
+      --sel-fg: #0A0A0F;
+      --glow: radial-gradient(circle at 0% 0%, rgba(153,69,255,0.08), transparent 40%),
+              radial-gradient(circle at 100% 0%, rgba(20,241,149,0.05), transparent 45%);
+      --desc-color: #CFC9D6;
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'IBM Plex Mono', 'Menlo', 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    ::selection { background: var(--sel-bg); color: var(--sel-fg); }
+
+    /* ── Shell ── */
+    #shell {
+      padding: 32px 56px 64px;
+      min-height: 100%;
+      background-image: var(--glow);
+    }
+
+    /* ── Folio header ── */
+    #folio {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-size: 10px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      border-bottom: 1px solid var(--rule-strong);
+      margin: 0 -56px;
+      padding: 0 56px 8px;
+    }
+
+    #folio-right {
+      margin-left: auto;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    #theme-toggle {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: transparent;
+      border: 1px solid var(--ink);
+      padding: 3px 9px;
+      cursor: pointer;
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    #theme-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--ink);
+      transition: background 0.2s, box-shadow 0.2s;
+      flex-shrink: 0;
+    }
+
+    /* ── Title slab ── */
+    #title-slab {
+      border-bottom: 4px double var(--rule-strong);
+      margin: 0 -56px;
+      padding: 36px 56px;
+    }
+
+    #title-row {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    #wordmark {
+      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-weight: 900;
+      font-size: clamp(72px, 10vw, 132px);
+      line-height: 0.95;
+      padding-top: 4px;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+    }
+
+    #ch.dark #wordmark {
+      background: linear-gradient(135deg, var(--accent2) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      padding-bottom: 8px;
+    }
+
+    #title-side { padding-top: 8px; }
+
+    .kicker {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    #tagline {
+      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-size: 22px;
+      line-height: 1.35;
+      font-weight: 400;
+      margin-bottom: 28px;
+    }
+
+    #stats {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .stat-value {
+      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-weight: 700;
+      font-size: 36px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-value.pick { color: var(--pick); }
+
+    .stat-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-top: 4px;
+    }
+
+    /* ── Filter bar ── */
+    #filter-bar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule-strong);
+      margin: 0 -56px;
+      padding: 10px 56px;
+    }
+
+    #filter-inner {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    #search-group {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex: 1 1 220px;
+      border-bottom: 1px solid var(--rule-strong);
+      padding-bottom: 4px;
+    }
+
+    .bar-label {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    #search {
+      flex: 1;
+      border: 0;
+      background: transparent;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      color: var(--ink);
+      outline: none;
+      caret-color: var(--ink);
+      min-width: 0;
+    }
+
+    #search::placeholder { color: var(--ink-soft); opacity: 0.7; }
+
+    #aud-group {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .aud-btn {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      padding: 5px 10px;
+      background: transparent;
+      border: 1px solid var(--rule);
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .aud-btn.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    #ch.dark .aud-btn.active {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+
+    #count-display {
+      font-size: 10px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-left: auto;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ── Sections ── */
+    #body { padding-top: 36px; }
+
+    .cat-section {
+      margin-bottom: 56px;
+      scroll-margin-top: 80px;
+    }
+
+    .sec-head {
+      display: flex;
+      gap: 24px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--rule-strong);
+      margin-bottom: 24px;
+      align-items: flex-start;
+    }
+
+    .sec-letter {
+      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-weight: 900;
+      font-size: 96px;
+      line-height: 0.85;
+      color: var(--accent);
+      letter-spacing: -0.04em;
+      min-width: 88px;
+      flex-shrink: 0;
+    }
+
+    #ch.dark .sec-letter {
+      text-shadow: 0 0 30px color-mix(in srgb, var(--accent) 33%, transparent);
+    }
+
+    .sec-head-main { flex: 1; padding-top: 6px; }
+
+    .sec-kicker {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .sec-title {
+      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-weight: 500;
+      font-size: 36px;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+
+    .sec-desc {
+      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-size: 17px;
+      font-style: italic;
+      color: var(--ink-soft);
+      max-width: 560px;
+    }
+
+    /* ── Entry grid ── */
+    .entry-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .entry {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 12px;
+      padding: 16px 20px 18px;
+      border-right: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      transition: background 0.15s;
+    }
+
+    .entry:hover { background: rgba(11,107,58,0.04); }
+    #ch.dark .entry:hover { background: rgba(20,241,149,0.04); }
+
+    .entry-num {
+      font-size: 11px;
+      color: var(--ink-soft);
+      letter-spacing: 0.08em;
+    }
+
+    .entry-star {
+      color: var(--pick);
+      font-size: 14px;
+      margin-top: 4px;
+    }
+
+    .entry-main { min-width: 0; }
+
+    .entry-head {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .entry-name {
+      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-weight: 600;
+      font-size: 22px;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 2px solid var(--rule-strong);
+      padding-bottom: 1px;
+      letter-spacing: -0.01em;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .entry-name:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .entry-aud {
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      color: var(--ink-soft);
+      border: 1px solid var(--rule);
+      padding: 1px 5px;
+      flex-shrink: 0;
+    }
+
+    .entry-desc {
+      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-size: 15px;
+      line-height: 1.45;
+      margin: 0 0 8px;
+      color: var(--desc-color);
+    }
+
+    .entry-note {
+      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-size: 14px;
+      font-style: italic;
+      color: var(--pick);
+      margin: 0 0 8px;
+      padding-left: 10px;
+      border-left: 2px solid var(--pick-border);
+    }
+
+    .entry-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .entry-tag {
+      font-size: 10px;
+      letter-spacing: 0.05em;
+      color: var(--ink-soft);
+      border: 1px solid var(--rule);
+      padding: 1px 6px;
+    }
+
+    .entry-url {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      color: var(--ink-soft);
+      letter-spacing: 0.04em;
+      flex-wrap: wrap;
+    }
+
+    .entry-url-sep { margin: 0 4px; }
+
+    /* ── Footer ── */
+    #foot {
+      margin: 64px -56px 0;
+      padding: 16px 56px 0;
+      border-top: 4px double var(--rule-strong);
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      flex-wrap: wrap;
+    }
+
+    #foot a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      #shell { padding: 20px 24px 48px; }
+      #folio { margin: 0 -24px; padding: 0 24px 8px; }
+      #title-slab { margin: 0 -24px; padding: 36px 24px; }
+      #filter-bar { margin: 0 -24px; padding: 10px 24px; }
+      #foot { margin: 64px -24px 0; padding: 16px 24px 0; }
+      #title-row { grid-template-columns: 1fr; gap: 24px; }
+      .entry-grid { grid-template-columns: 1fr; }
+      .sec-letter { font-size: 72px; min-width: 64px; }
+      .sec-title { font-size: 28px; }
+    }
+
+    @media (max-width: 560px) {
+      #tagline { font-size: 18px; }
+      #aud-group { flex-wrap: wrap; }
+      .sec-letter { font-size: 56px; min-width: 52px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="shell">
+
+    <!-- Folio header -->
+    <div id="folio">
+      <span>solana-toolbox.com</span>
+      <span>—</span>
+      <span>An index of working tools</span>
+      <span id="folio-right">
+        <span>Issue 14 · 05.2026 · Page 01</span>
+        <button id="theme-toggle" title="Toggle theme" aria-label="Toggle dark mode">
+          <span id="theme-dot"></span>
+          <span id="theme-label">DAY</span>
+        </button>
       </span>
-    </h1>
-    <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-8">
-      A curated directory of {totalTools}+ tools, libraries, and resources for building on and using Solana.
-    </p>
-
-    <!-- Category quick-jump links -->
-    <div class="flex flex-wrap gap-2 justify-center">
-      {categories.map(cat => (
-        <a href={`#${cat.slug}`} class="px-4 py-2 rounded-full text-sm font-medium bg-[#1E1E2E] text-gray-300 hover:text-white hover:bg-[#2a2a3e] transition-colors">
-          {cat.icon} {cat.name}
-        </a>
-      ))}
     </div>
-  </section>
 
-  <!-- Category sections -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 pb-16 space-y-16">
-    {categories.map(cat => {
-      const tools = allTools[cat.slug] ?? [];
-      if (tools.length === 0) return null;
-      return (
-        <section id={cat.slug}>
-          <div class="flex items-center gap-3 mb-6 pb-4 border-b border-[#1E1E2E]">
-            <span class="text-2xl">{cat.icon}</span>
-            <div>
-              <a href={`/${cat.slug}`} class="text-xl font-semibold text-white hover:text-[#14F195] transition-colors">{cat.name}</a>
-              <p class="text-sm text-gray-400">{cat.description}</p>
+    <!-- Title slab -->
+    <div id="title-slab">
+      <div id="title-row">
+        <h1 id="wordmark">SOLANA<br/>TOOLBOX</h1>
+        <div id="title-side">
+          <div class="kicker">A Working Index</div>
+          <p id="tagline">
+            {totalTools} tools we keep coming back to. Organised, opinionated, occasionally cranky.
+            Updated when something breaks or something better appears.
+          </p>
+          <div id="stats">
+            <div class="stat">
+              <div class="stat-value">{totalTools}</div>
+              <div class="stat-label">Tools</div>
             </div>
-            <span class="ml-auto text-xs text-gray-500 font-medium">{tools.length} tools</span>
+            <div class="stat">
+              <div class="stat-value">{catData.length}</div>
+              <div class="stat-label">Categories</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">{totalOpen}</div>
+              <div class="stat-label">Open source</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value pick">{totalPicks}</div>
+              <div class="stat-label">Editor's picks</div>
+            </div>
           </div>
-          <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {tools.map((tool: any) => (
-              <ToolCard {...tool} />
-            ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter bar -->
+    <div id="filter-bar">
+      <div id="filter-inner">
+        <div id="search-group">
+          <span class="bar-label">FIND</span>
+          <input
+            id="search"
+            type="text"
+            placeholder="any name, tag, or word"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+        <div id="aud-group">
+          <span class="bar-label">SHOW</span>
+          <button class="aud-btn active" data-aud="all">everything</button>
+          <button class="aud-btn" data-aud="user">for users</button>
+          <button class="aud-btn" data-aud="developer">for developers</button>
+        </div>
+        <div id="count-display"><span id="entry-count">{totalTools}</span> entries</div>
+      </div>
+    </div>
+
+    <!-- Sections -->
+    <div id="body">
+      {catData.map((cat: any, ci: number) => (
+        <section id={cat.slug} class="cat-section">
+
+          <div class="sec-head">
+            <div class="sec-letter">{cat.letter}</div>
+            <div class="sec-head-main">
+              <div class="sec-kicker">
+                SECTION {String(ci + 1).padStart(2, '0')} · {cat.tools.length} ENTRIES
+              </div>
+              <h2 class="sec-title">{cat.name}</h2>
+              <p class="sec-desc">{cat.issue}</p>
+            </div>
+          </div>
+
+          <div class="entry-grid">
+            {cat.tools.map((tool: any, ti: number) => {
+              const audLabel =
+                tool.audience === 'developer' ? 'DEV'
+                : tool.audience === 'user' ? 'USER'
+                : 'DEV·USER';
+              const ghPath = tool.github
+                ? tool.github.replace('https://github.com/', '')
+                : null;
+              const urlDisplay = tool.url
+                .replace(/^https?:\/\//, '')
+                .replace(/\/$/, '');
+              const searchStr = [tool.name, tool.description, ...(tool.tags ?? [])]
+                .join(' ')
+                .toLowerCase();
+              return (
+                <article
+                  class="entry"
+                  data-search={searchStr}
+                  data-audience={tool.audience}
+                >
+                  <div class="entry-gutter">
+                    <div class="entry-num">{cat.letter}.{String(ti + 1).padStart(2, '0')}</div>
+                    {tool.note && <div class="entry-star">★</div>}
+                  </div>
+                  <div class="entry-main">
+                    <div class="entry-head">
+                      <a href={tool.url} target="_blank" rel="noopener noreferrer" class="entry-name">
+                        {tool.name}
+                      </a>
+                      <span class="entry-aud">{audLabel}</span>
+                    </div>
+                    <p class="entry-desc">{tool.description}</p>
+                    {tool.note && <p class="entry-note">{tool.note}</p>}
+                    <div class="entry-tags">
+                      {(tool.tags ?? []).map((tag: string) => (
+                        <span class="entry-tag">{tag}</span>
+                      ))}
+                    </div>
+                    <div class="entry-url">
+                      <span>↗</span>
+                      <span>{urlDisplay}</span>
+                      {ghPath && (
+                        <>
+                          <span class="entry-url-sep">·</span>
+                          <span>gh: {ghPath}</span>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </section>
-      );
-    })}
-  </main>
-</Base>
+      ))}
+    </div>
+
+    <!-- Footer -->
+    <footer id="foot">
+      <span>END OF INDEX</span>
+      <span>—</span>
+      <span>
+        Curated by monkeybusiness ·
+        <a href="https://github.com/monkeybusiness-xyz/solana-toolbox" target="_blank" rel="noopener">
+          open source
+        </a>
+        · MIT ·
+        <a href="/about">about</a>
+      </span>
+    </footer>
+
+  </div>
+
+  <script>
+    const html = document.getElementById('ch')!;
+
+    // ── Theme ──
+    const dot = document.getElementById('theme-dot')!;
+    const label = document.getElementById('theme-label')!;
+
+    function applyTheme(dark: boolean) {
+      html.classList.toggle('dark', dark);
+      dot.style.background = dark ? 'var(--accent)' : 'var(--ink)';
+      dot.style.boxShadow = dark ? '0 0 6px var(--accent)' : 'none';
+      label.textContent = dark ? 'DARK' : 'DAY';
+    }
+
+    const saved = localStorage.getItem('catalog-theme');
+    applyTheme(saved === 'dark');
+
+    document.getElementById('theme-toggle')!.addEventListener('click', () => {
+      const dark = !html.classList.contains('dark');
+      applyTheme(dark);
+      localStorage.setItem('catalog-theme', dark ? 'dark' : 'light');
+    });
+
+    // ── Search & filter ──
+    const searchInput = document.getElementById('search') as HTMLInputElement;
+    const audBtns = Array.from(document.querySelectorAll<HTMLElement>('.aud-btn'));
+    const entries = Array.from(document.querySelectorAll<HTMLElement>('.entry'));
+    const countEl = document.getElementById('entry-count')!;
+
+    let currentAud = 'all';
+
+    function updateFilter() {
+      const q = searchInput.value.trim().toLowerCase();
+      let visible = 0;
+      for (const entry of entries) {
+        const search = entry.dataset.search ?? '';
+        const aud = entry.dataset.audience ?? 'both';
+        const audMatch = currentAud === 'all' || aud === currentAud || aud === 'both';
+        const searchMatch = !q || search.includes(q);
+        const show = audMatch && searchMatch;
+        (entry as HTMLElement).style.display = show ? '' : 'none';
+        if (show) visible++;
+      }
+      countEl.textContent = String(visible);
+    }
+
+    searchInput.addEventListener('input', updateFilter);
+
+    for (const btn of audBtns) {
+      btn.addEventListener('click', () => {
+        currentAud = btn.dataset.aud ?? 'all';
+        for (const b of audBtns) b.classList.toggle('active', b === btn);
+        updateFilter();
+      });
+    }
+  </script>
+</body>
+</html>

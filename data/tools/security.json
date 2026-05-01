@@ -5,7 +5,8 @@
     "url": "https://www.anchor-lang.com/docs/account-constraints",
     "github": "https://github.com/coral-xyz/anchor",
     "tags": ["anchor", "constraints", "validation"],
-    "audience": "developer"
+    "audience": "developer",
+    "note": "Your first line of defence."
   },
   {
     "name": "Sec3 (formerly Soteria)",
@@ -37,6 +38,7 @@
     "url": "https://github.com/coral-xyz/sealevel-attacks",
     "github": "https://github.com/coral-xyz/sealevel-attacks",
     "tags": ["education", "ctf", "vulnerabilities", "learning"],
-    "audience": "developer"
+    "audience": "developer",
+    "note": "Read this first."
   }
 ]

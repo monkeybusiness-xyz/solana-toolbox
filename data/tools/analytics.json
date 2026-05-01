@@ -5,7 +5,8 @@
     "url": "https://solscan.io",
     "github": null,
     "tags": ["explorer", "transactions", "tokens"],
-    "audience": "both"
+    "audience": "both",
+    "note": "Browse here first."
   },
   {
     "name": "Solana Explorer",

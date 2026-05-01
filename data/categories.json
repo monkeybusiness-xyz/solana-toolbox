@@ -4,6 +4,7 @@
     "name": "Developer SDKs & Frameworks",
     "description": "Libraries and frameworks for building on Solana",
     "icon": "⚙️",
+    "issue": "Pick the SDK that matches your language. Add Anchor for Rust programs.",
     "prose": [
       "The foundation of Solana development starts with choosing the right SDK for your language. Solana Web3.js is the official JavaScript/TypeScript library and the most widely used — it covers the full JSON RPC API and works in both Node.js and the browser. Gill is a lighter modern alternative with a tree-shakable API and smaller bundle size.",
       "For smart contract development in Rust, Anchor is the dominant framework. It provides an IDL specification, account validation macros, and generates client-side TypeScript bindings automatically, eliminating most of the boilerplate that raw Solana programs require. Python developers can write programs via Seahorse, which compiles to Anchor under the hood. Go developers have solana-go; Python RPC work uses solana-py, backed by the fast Rust-based solders types.",
@@ -15,6 +16,7 @@
     "name": "DeFi & Trading",
     "description": "DEXes, aggregators, trading bots, and yield tools",
     "icon": "📈",
+    "issue": "Most retail trades route through Jupiter. Yield is split between Marinade, Jito, and Kamino.",
     "prose": [
       "Solana's DeFi ecosystem is among the most liquid on any chain. For swaps, Jupiter is the first stop — it aggregates liquidity across every major Solana DEX to find the best route for any trade.",
       "Raydium and Meteora both operate AMMs but with different mechanisms: Raydium integrates with the central order book, while Meteora's DLMM uses concentrated liquidity with dynamic fees. For yield on staked SOL, Marinade and Jito both offer liquid staking (mSOL and JitoSOL respectively), with Jito adding MEV-boosted rewards via its block engine. Kamino automates concentrated liquidity management and lending.",
@@ -26,6 +28,7 @@
     "name": "NFT Tools",
     "description": "Minting, marketplaces, metadata, and NFT analytics",
     "icon": "🎨",
+    "issue": "Almost all NFT infra runs on Metaplex. cNFTs are the default for large-scale mints.",
     "prose": [
       "Nearly all NFT infrastructure on Solana runs on Metaplex — its Token Metadata program is the standard for on-chain NFT data, Candy Machine powers the majority of NFT launches, and the Bubblegum program enables compressed NFTs.",
       "Compressed NFTs (cNFTs) are the most significant development in Solana NFTs in recent years. By using state compression, you can mint millions of NFTs for a fraction of the cost of standard NFTs, making them practical for loyalty programs, gaming items, and large-scale distributions. Underdog Protocol wraps this into an API for developers who don't want to deal with Metaplex directly.",
@@ -37,6 +40,7 @@
     "name": "Wallets",
     "description": "Browser extensions, mobile, hardware, and embedded wallets",
     "icon": "👛",
+    "issue": "Phantom is the default. For dApps, use Wallet Adapter or an embedded wallet provider.",
     "prose": [
       "For most Solana users, Phantom is the default starting point — the most widely installed wallet, available as a browser extension and mobile app, with built-in swap and NFT support. Solflare is the main alternative, with native staking UI and strong hardware wallet integration. Backpack takes a different approach, embedding an xNFT app platform inside the wallet itself.",
       "For maximum security, Ledger provides hardware-level key isolation. It's the right choice for storing significant amounts of SOL or tokens long-term.",
@@ -48,6 +52,7 @@
     "name": "RPC & Infrastructure",
     "description": "Node providers, indexers, and data APIs",
     "icon": "🏗️",
+    "issue": "Helius is the developer default. Triton serves protocols needing dedicated capacity.",
     "prose": [
       "Choosing an RPC provider is one of the first infrastructure decisions for any Solana project. Helius is the most developer-focused option: beyond standard RPC endpoints it provides enhanced APIs for the Digital Asset Standard (DAS), webhooks for on-chain events, and priority fee estimation — all purpose-built for Solana. QuickNode is a multi-chain provider with reliable Solana support and an add-on marketplace. Triton (RPC Pool) serves major protocols requiring dedicated, low-latency access.",
       "For indexing and querying on-chain data, Shyft provides transaction parsing and webhooks, while The Graph supports Solana subgraphs via GraphQL.",
@@ -59,6 +64,7 @@
     "name": "Analytics & Explorers",
     "description": "Block explorers, dashboards, and on-chain analytics",
     "icon": "🔍",
+    "issue": "Solscan for browsing, Birdeye for trading, Dune/Flipside for SQL.",
     "prose": [
       "Solscan is the most-used block explorer on Solana — its transaction and account views are significantly more readable than the official Solana Explorer, which is better suited for validators and core developers.",
       "For DeFi analytics, Birdeye covers token charts, wallet tracking, and portfolio overview in a single dashboard and is the go-to for traders monitoring positions. Step Finance serves a similar purpose with a focus on LP position visualization.",
@@ -70,6 +76,7 @@
     "name": "Security & Auditing",
     "description": "Static analysis, formal verification, and audit firms",
     "icon": "🔒",
+    "issue": "Use Anchor constraints by default. Audit with OtterSec or Neodyme before mainnet.",
     "prose": [
       "Security in Solana programs centers on account validation — ensuring that the accounts passed into an instruction are what the program expects. Anchor's built-in constraints (has_one, constraint, owner, signer) handle the most common validation patterns declaratively and eliminate a large class of vulnerabilities by construction.",
       "For automated scanning, Sec3 (formerly Soteria) provides static analysis against known Solana vulnerability patterns. For formal audits before mainnet deployment, OtterSec and Neodyme are two of the most respected firms in the ecosystem — both have audited Jupiter, Marinade, Drift, and other major protocols.",
@@ -81,6 +88,7 @@
     "name": "Token Tools",
     "description": "Token creation, launchpads, metadata, and management",
     "icon": "🪙",
+    "issue": "Use Token-2022 for new launches with fees or compliance needs. Streamflow for vesting.",
     "prose": [
       "Token creation on Solana has two main paths. The original SPL token program is simple and widely supported. Token Extensions (Token-2022) is the next-generation program, adding transfer fees, confidential transfers, and interest-bearing tokens directly at the protocol level without additional smart contracts.",
       "For metadata, Metaplex Token Metadata is the standard — required for wallets and marketplaces to display token names and images. SPL Token UI provides a no-code web interface for creating tokens without writing any code.",

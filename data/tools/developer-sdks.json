@@ -5,7 +5,8 @@
     "url": "https://solana-labs.github.io/solana-web3.js/",
     "github": "https://github.com/solana-labs/solana-web3.js",
     "tags": ["javascript", "typescript", "sdk", "official"],
-    "audience": "developer"
+    "audience": "developer",
+    "note": "Default choice."
   },
   {
     "name": "Anchor",
@@ -13,7 +14,8 @@
     "url": "https://www.anchor-lang.com/",
     "github": "https://github.com/coral-xyz/anchor",
     "tags": ["rust", "framework", "smart-contracts", "idl"],
-    "audience": "developer"
+    "audience": "developer",
+    "note": "Editor's pick for on-chain programs."
   },
   {
     "name": "Solana Python (solders / solana-py)",
@@ -61,6 +63,7 @@
     "url": "https://github.com/LiteSVM/litesvm",
     "github": "https://github.com/LiteSVM/litesvm",
     "tags": ["testing", "rust"],
-    "audience": "developer"
+    "audience": "developer",
+    "note": "Use this, not bankrun."
   }
 ]

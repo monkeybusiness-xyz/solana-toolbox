@@ -5,7 +5,8 @@
     "url": "https://spl.solana.com/token-2022",
     "github": "https://github.com/solana-labs/solana-program-library",
     "tags": ["token-program", "token-2022", "spl", "official"],
-    "audience": "developer"
+    "audience": "developer",
+    "note": "Default for new tokens."
   },
   {
     "name": "pump.fun",

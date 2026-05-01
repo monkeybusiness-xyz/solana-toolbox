@@ -5,7 +5,8 @@
     "url": "https://www.metaplex.com",
     "github": "https://github.com/metaplex-foundation",
     "tags": ["protocol", "metadata", "minting", "marketplace"],
-    "audience": "both"
+    "audience": "both",
+    "note": "The substrate."
   },
   {
     "name": "Magic Eden",

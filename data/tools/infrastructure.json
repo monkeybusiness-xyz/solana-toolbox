@@ -5,7 +5,8 @@
     "url": "https://helius.dev",
     "github": "https://github.com/helius-labs",
     "tags": ["rpc", "api", "webhooks", "das"],
-    "audience": "developer"
+    "audience": "developer",
+    "note": "Most developer-friendly."
   },
   {
     "name": "QuickNode",

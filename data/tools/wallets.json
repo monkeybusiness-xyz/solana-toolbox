@@ -5,7 +5,8 @@
     "url": "https://phantom.app",
     "github": null,
     "tags": ["browser-extension", "mobile", "popular"],
-    "audience": "user"
+    "audience": "user",
+    "note": "Default for users."
   },
   {
     "name": "Solflare",
