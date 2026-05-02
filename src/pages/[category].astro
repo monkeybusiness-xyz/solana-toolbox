@@ -1,4 +1,9 @@
 ---
+import '@fontsource-variable/newsreader/opsz.css';
+import '@fontsource-variable/newsreader/opsz-italic.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/500.css';
+import '@fontsource/ibm-plex-mono/600.css';
 import categories from '../../data/categories.json';
 
 export async function getStaticPaths() {
@@ -65,10 +70,6 @@ const totalTools = tools.length;
   <title>{pageTitle}</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;0,6..72,800;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-
   <meta property="og:type" content="website" />
   <meta property="og:url" content={canonicalURL} />
   <meta property="og:title" content={pageTitle} />
@@ -85,6 +86,7 @@ const totalTools = tools.length;
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "ItemList",
+    "@id": `${canonicalURL}#itemlist`,
     "name": cat.name,
     "description": cat.description,
     "url": canonicalURL,
@@ -96,6 +98,15 @@ const totalTools = tools.length;
       "description": tool.description,
       "url": tool.url,
     })),
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": `${canonicalURL}#breadcrumb`,
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Solana Toolbox", "item": "https://solana-toolbox.com/" },
+      { "@type": "ListItem", "position": 2, "name": cat.name, "item": canonicalURL },
+    ],
   })} />
 
   <link rel="preconnect" href="https://www.googletagmanager.com" />
@@ -206,7 +217,7 @@ const totalTools = tools.length;
     }
 
     #hero-letter {
-      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-family: 'Newsreader Variable', 'Times New Roman', serif;
       font-weight: 900;
       font-size: clamp(100px, 14vw, 220px);
       line-height: 0.82;
@@ -235,7 +246,7 @@ const totalTools = tools.length;
     }
 
     #hero-title {
-      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-family: 'Newsreader Variable', 'Times New Roman', serif;
       font-weight: 700;
       font-size: clamp(42px, 5.5vw, 84px);
       line-height: 0.98;
@@ -245,7 +256,7 @@ const totalTools = tools.length;
     }
 
     #hero-desc {
-      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-family: 'Newsreader Variable', 'Times New Roman', serif;
       font-size: clamp(18px, 2vw, 26px);
       line-height: 1.32;
       margin-bottom: 12px;
@@ -253,12 +264,37 @@ const totalTools = tools.length;
     }
 
     #hero-issue {
-      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-family: 'Newsreader Variable', 'Times New Roman', serif;
       font-size: clamp(15px, 1.5vw, 19px);
       line-height: 1.45;
       font-style: italic;
       color: var(--ink-soft);
       max-width: 620px;
+    }
+
+    /* ── Category prose ── */
+    #prose {
+      margin: 0 -56px;
+      padding: 32px 56px;
+      border-bottom: 1px solid var(--rule-strong);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      max-width: 760px;
+    }
+
+    #prose p {
+      font-family: 'Newsreader Variable', 'Times New Roman', serif;
+      font-size: clamp(16px, 1.5vw, 19px);
+      line-height: 1.55;
+      color: var(--ink);
+    }
+
+    @media (max-width: 900px) {
+      #prose { margin-left: -24px; margin-right: -24px; padding-left: 24px; padding-right: 24px; }
+    }
+    @media (max-width: 560px) {
+      #prose { margin-left: -20px; margin-right: -20px; padding-left: 20px; padding-right: 20px; }
     }
 
     /* ── Filter bar ── */
@@ -361,7 +397,7 @@ const totalTools = tools.length;
     }
 
     .tool-name {
-      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-family: 'Newsreader Variable', 'Times New Roman', serif;
       font-weight: 700;
       font-size: clamp(26px, 3vw, 38px);
       letter-spacing: -0.02em;
@@ -387,7 +423,7 @@ const totalTools = tools.length;
     }
 
     .tool-dek {
-      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-family: 'Newsreader Variable', 'Times New Roman', serif;
       font-size: clamp(16px, 1.5vw, 19px);
       line-height: 1.45;
       margin-bottom: 18px;
@@ -413,7 +449,7 @@ const totalTools = tools.length;
     }
 
     .tool-pick-text {
-      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-family: 'Newsreader Variable', 'Times New Roman', serif;
       font-style: italic;
       font-size: 15px;
       line-height: 1.45;
@@ -492,7 +528,7 @@ const totalTools = tools.length;
       padding: 7px 8px;
       text-decoration: none;
       color: var(--ink);
-      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-family: 'Newsreader Variable', 'Times New Roman', serif;
       font-size: 16px;
       transition: background 0.12s;
       margin: 0 -8px;
@@ -515,7 +551,7 @@ const totalTools = tools.length;
     }
 
     .aside-text {
-      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-family: 'Newsreader Variable', 'Times New Roman', serif;
       font-size: 15px;
       line-height: 1.5;
       color: var(--ink-soft);
@@ -636,6 +672,13 @@ const totalTools = tools.length;
       <p id="hero-issue">{cat.issue}</p>
     </div>
   </div>
+
+  <!-- Category prose -->
+  {cat.prose.length > 0 && (
+    <div id="prose">
+      {cat.prose.map((para: string) => <p>{para}</p>)}
+    </div>
+  )}
 
   <!-- Filter bar -->
   <div id="bar">
