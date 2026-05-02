@@ -1,6 +1,4 @@
 ---
-import Base from '../layouts/Base.astro';
-import ToolCard from '../components/ToolCard.astro';
 import categories from '../../data/categories.json';
 
 export async function getStaticPaths() {
@@ -11,9 +9,19 @@ export async function getStaticPaths() {
     allTools[slug] = (mod as any).default;
   }
 
-  return categories.map((cat) => ({
+  return categories.map((cat, catIndex) => ({
     params: { category: cat.slug },
-    props: { cat, tools: allTools[cat.slug] ?? [] },
+    props: {
+      cat,
+      tools: allTools[cat.slug] ?? [],
+      catIndex,
+      allCats: categories.map((c, i) => ({
+        slug: c.slug,
+        name: c.name,
+        letter: String.fromCharCode(65 + i),
+        toolCount: (allTools[c.slug] ?? []).length,
+      })),
+    },
   }));
 }
 
@@ -22,50 +30,785 @@ interface Category {
   name: string;
   description: string;
   icon: string;
+  issue: string;
   prose: string[];
 }
 
-const { cat, tools }: { cat: Category; tools: any[] } = Astro.props;
+interface AllCat {
+  slug: string;
+  name: string;
+  letter: string;
+  toolCount: number;
+}
 
-const title = `${cat.name} — Solana Toolbox`;
-const description = `${cat.description}. A curated list of ${tools.length} tools for building on and using Solana.`;
+const { cat, tools, catIndex, allCats } = Astro.props as {
+  cat: Category;
+  tools: any[];
+  catIndex: number;
+  allCats: AllCat[];
+};
+
+const letter = String.fromCharCode(65 + catIndex);
+const pageTitle = `${cat.name} — Solana Toolbox`;
+const pageDesc = `${cat.description}. A curated list of ${tools.length} tools for building on and using Solana.`;
+const canonicalURL = `https://solana-toolbox.com/${cat.slug}/`;
+const totalTools = tools.length;
 ---
 
-<Base title={title} description={description} image="/og.png">
-  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-16">
-    <!-- Breadcrumb -->
-    <nav class="text-sm text-gray-500 mb-10">
-      <a href="/" class="hover:text-gray-300 transition-colors">Solana Toolbox</a>
-      <span class="mx-2">›</span>
-      <span class="text-gray-400">{cat.name}</span>
-    </nav>
+<!doctype html>
+<html lang="en" id="ch">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={pageDesc} />
+  <link rel="canonical" href={canonicalURL} />
+  <title>{pageTitle}</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Header -->
-    <div class="mb-10">
-      <div class="flex items-center gap-3 mb-4">
-        <span class="text-4xl">{cat.icon}</span>
-        <h1 class="text-3xl font-bold text-white">{cat.name}</h1>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;0,6..72,800;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={pageDesc} />
+  <meta property="og:site_name" content="Solana Toolbox" />
+  <meta property="og:image" content="https://solana-toolbox.com/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={pageTitle} />
+  <meta name="twitter:description" content={pageDesc} />
+  <meta name="twitter:image" content="https://solana-toolbox.com/og.png" />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": cat.name,
+    "description": cat.description,
+    "url": canonicalURL,
+    "numberOfItems": tools.length,
+    "itemListElement": tools.map((tool: any, i: number) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": tool.name,
+      "description": tool.description,
+      "url": tool.url,
+    })),
+  })} />
+
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <script>
+    window.addEventListener('load', function() {
+      var s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-4VQYB5F5VC';
+      s.async = true;
+      document.head.appendChild(s);
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      function gtag(...args: any[]) { (window as any).dataLayer.push(args); }
+      gtag('js', new Date());
+      gtag('config', 'G-4VQYB5F5VC');
+    });
+  </script>
+
+  <style>
+    :root {
+      --bg: #F1EADB;
+      --ink: #0F1A14;
+      --ink-soft: #4D5A52;
+      --rule: rgba(15,26,20,0.12);
+      --rule-strong: #0F1A14;
+      --accent: #0B6B3A;
+      --accent2: #C5158A;
+      --pick: #C5158A;
+      --pick-border: #C5158A;
+      --sel-bg: #0F1A14;
+      --sel-fg: #F1EADB;
+      --glow: none;
+      --desc-color: var(--ink);
+      --accent-bg: rgba(11,107,58,0.04);
+      --sib-hover: rgba(11,107,58,0.05);
+    }
+
+    #ch.dark {
+      --bg: #0A0A0F;
+      --ink: #E8E4D8;
+      --ink-soft: #9A93A8;
+      --rule: rgba(232,228,216,0.10);
+      --rule-strong: rgba(232,228,216,0.40);
+      --accent: #14F195;
+      --accent2: #9945FF;
+      --pick: #9945FF;
+      --pick-border: #9945FF;
+      --sel-bg: #14F195;
+      --sel-fg: #0A0A0F;
+      --glow: radial-gradient(circle at 0% 0%, rgba(153,69,255,0.08), transparent 40%),
+              radial-gradient(circle at 100% 0%, rgba(20,241,149,0.05), transparent 45%);
+      --desc-color: #CFC9D6;
+      --accent-bg: rgba(20,241,149,0.06);
+      --sib-hover: rgba(20,241,149,0.06);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'IBM Plex Mono', 'Menlo', 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    ::selection { background: var(--sel-bg); color: var(--sel-fg); }
+
+    #shell {
+      padding: 32px 56px 64px;
+      min-height: 100%;
+      background-image: var(--glow);
+    }
+
+    /* ── Folio ── */
+    #folio {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-size: 10px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      border-bottom: 1px solid var(--rule-strong);
+      margin: 0 -56px;
+      padding: 0 56px 8px;
+    }
+
+    #folio-right { margin-left: auto; }
+
+    .folio-link {
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .folio-link:hover { color: var(--accent); }
+
+    /* ── Hero ── */
+    #hero {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 40px;
+      align-items: start;
+      border-bottom: 4px double var(--rule-strong);
+      margin: 0 -56px;
+      padding: 48px 56px 40px;
+    }
+
+    #hero-letter {
+      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-weight: 900;
+      font-size: clamp(100px, 14vw, 220px);
+      line-height: 0.82;
+      letter-spacing: -0.05em;
+      color: var(--accent);
+      padding-top: 8px;
+      padding-bottom: 14px;
+    }
+
+    #ch.dark #hero-letter {
+      background: linear-gradient(135deg, var(--accent2) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    #hero-body { padding-top: 16px; max-width: 760px; }
+
+    #hero-kicker {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    #hero-title {
+      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-weight: 700;
+      font-size: clamp(42px, 5.5vw, 84px);
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      color: var(--ink);
+    }
+
+    #hero-desc {
+      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-size: clamp(18px, 2vw, 26px);
+      line-height: 1.32;
+      margin-bottom: 12px;
+      color: var(--ink);
+    }
+
+    #hero-issue {
+      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-size: clamp(15px, 1.5vw, 19px);
+      line-height: 1.45;
+      font-style: italic;
+      color: var(--ink-soft);
+      max-width: 620px;
+    }
+
+    /* ── Filter bar ── */
+    #bar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule-strong);
+      margin: 0 -56px;
+      padding: 10px 56px;
+    }
+
+    #bar-inner {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    #bar-aud { display: flex; gap: 4px; align-items: center; }
+
+    .bar-label {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      font-weight: 600;
+      margin-right: 6px;
+    }
+
+    .aud-btn {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      padding: 5px 10px;
+      background: transparent;
+      border: 1px solid var(--rule);
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink);
+      transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+
+    #ch.dark .aud-btn.active {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+
+    #ch:not(.dark) .aud-btn.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    #bar-count {
+      font-size: 10px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-left: auto;
+    }
+
+    /* ── Layout ── */
+    #layout {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 56px;
+      padding-top: 40px;
+    }
+
+    /* ── Tool entries ── */
+    .tool {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 16px;
+      padding: 32px 0 36px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .tool-num {
+      font-size: 11px;
+      color: var(--ink-soft);
+      letter-spacing: 0.08em;
+    }
+
+    .tool-star {
+      color: var(--pick);
+      font-size: 18px;
+      margin-top: 8px;
+    }
+
+    .tool-head {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .tool-name {
+      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-weight: 700;
+      font-size: clamp(26px, 3vw, 38px);
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 2px solid var(--rule-strong);
+      padding-bottom: 2px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .tool-name:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .tool-aud {
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      color: var(--ink-soft);
+      border: 1px solid var(--rule);
+      padding: 2px 6px;
+    }
+
+    .tool-dek {
+      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-size: clamp(16px, 1.5vw, 19px);
+      line-height: 1.45;
+      margin-bottom: 18px;
+      color: var(--desc-color);
+      max-width: 640px;
+    }
+
+    .tool-pick {
+      background: var(--accent-bg);
+      border-left: 3px solid var(--pick-border);
+      padding: 12px 14px;
+      margin-bottom: 18px;
+      max-width: 600px;
+    }
+
+    .tool-pick-label {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--pick);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .tool-pick-text {
+      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-style: italic;
+      font-size: 15px;
+      line-height: 1.45;
+      color: var(--ink);
+    }
+
+    .tool-meta { border-top: 1px solid var(--rule); padding-top: 12px; }
+
+    .tool-meta-row {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 16px;
+      padding: 4px 0;
+      align-items: baseline;
+      font-size: 12px;
+    }
+
+    .tool-meta-key {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .meta-link {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule-strong);
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .meta-link:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .tool-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .tool-tag {
+      font-size: 10px;
+      letter-spacing: 0.05em;
+      color: var(--ink-soft);
+      border: 1px solid var(--rule);
+      padding: 1px 6px;
+    }
+
+    /* ── Sidebar ── */
+    #aside {
+      position: sticky;
+      top: 60px;
+      align-self: start;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      padding-top: 32px;
+    }
+
+    .aside-block { border-top: 1px solid var(--rule-strong); padding-top: 14px; }
+
+    .aside-label {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .aside-list { list-style: none; }
+
+    .aside-item {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: baseline;
+      gap: 10px;
+      padding: 7px 8px;
+      text-decoration: none;
+      color: var(--ink);
+      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-size: 16px;
+      transition: background 0.12s;
+      margin: 0 -8px;
+    }
+
+    .aside-item:hover { background: var(--sib-hover); }
+
+    .aside-item.current {
+      background: var(--sib-hover);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .aside-item-letter,
+    .aside-item-count {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--ink-soft);
+      letter-spacing: 0.05em;
+    }
+
+    .aside-text {
+      font-family: 'Newsreader', 'Times New Roman', serif;
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+      margin-bottom: 8px;
+      font-style: italic;
+    }
+
+    .aside-cta {
+      font-size: 11px;
+      color: var(--ink);
+      word-break: break-all;
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule-strong);
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .aside-cta:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+    #aside-toggle {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      padding: 5px 10px;
+      background: transparent;
+      border: 1px solid var(--rule-strong);
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    #aside-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--ink);
+      flex-shrink: 0;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    /* ── Footer ── */
+    #foot {
+      margin: 64px -56px 0;
+      padding: 16px 56px 0;
+      border-top: 4px double var(--rule-strong);
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      #shell { padding: 24px 24px 48px; }
+
+      #folio, #hero, #bar, #foot {
+        margin-left: -24px;
+        margin-right: -24px;
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      #layout { grid-template-columns: 1fr; }
+
+      #aside {
+        position: static;
+        border-top: 4px double var(--rule-strong);
+        padding-top: 32px;
+        margin-top: 8px;
+      }
+
+      #hero {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      #hero-letter { font-size: clamp(64px, 20vw, 120px); }
+    }
+
+    @media (max-width: 560px) {
+      #shell { padding: 20px 20px 40px; }
+
+      #folio, #hero, #bar, #foot {
+        margin-left: -20px;
+        margin-right: -20px;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .tool { grid-template-columns: 52px 1fr; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+<div id="shell">
+
+  <!-- Folio -->
+  <div id="folio">
+    <a href="/" class="folio-link">← solana-toolbox.com</a>
+    <span>—</span>
+    <span>Section {letter} · {String(catIndex + 1).padStart(2, '0')} of {allCats.length}</span>
+    <span id="folio-right">Issue 14 · 05.2026</span>
+  </div>
+
+  <!-- Hero -->
+  <div id="hero">
+    <div id="hero-letter">{letter}</div>
+    <div id="hero-body">
+      <div id="hero-kicker">{tools.length} entries · curated May 2026</div>
+      <h1 id="hero-title">{cat.name}</h1>
+      <p id="hero-desc">{cat.description}.</p>
+      <p id="hero-issue">{cat.issue}</p>
+    </div>
+  </div>
+
+  <!-- Filter bar -->
+  <div id="bar">
+    <div id="bar-inner">
+      <div id="bar-aud">
+        <span class="bar-label">Filter</span>
+        <button class="aud-btn active" data-aud="all">everything</button>
+        <button class="aud-btn" data-aud="user">for users</button>
+        <button class="aud-btn" data-aud="developer">for developers</button>
       </div>
-      <div class="space-y-4 text-gray-400 leading-relaxed text-base max-w-3xl">
-        {cat.prose.map((para: string) => <p>{para}</p>)}
+      <div id="bar-count" aria-live="polite">{tools.length} of {tools.length} entries</div>
+    </div>
+  </div>
+
+  <!-- Two-column layout -->
+  <div id="layout">
+    <main>
+      {tools.map((tool, ti) => {
+        const audLabel = tool.audience === 'developer' ? 'DEV' : tool.audience === 'user' ? 'USER' : 'DEV·USER';
+        const ghPath = tool.github ? tool.github.replace(/^https?:\/\/github\.com\//, '') : null;
+        const urlDisplay = tool.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+        return (
+          <article class="tool" data-audience={tool.audience}>
+            <div>
+              <div class="tool-num">{letter}.{String(ti + 1).padStart(2, '0')}</div>
+              {tool.note && <div class="tool-star">★</div>}
+            </div>
+            <div>
+              <div class="tool-head">
+                <a href={tool.url} target="_blank" rel="noopener noreferrer" class="tool-name">{tool.name}</a>
+                <span class="tool-aud">{audLabel}</span>
+              </div>
+              <p class="tool-dek">{tool.description}</p>
+              {tool.note && (
+                <div class="tool-pick">
+                  <div class="tool-pick-label">Editor's note</div>
+                  <p class="tool-pick-text">{tool.note}</p>
+                </div>
+              )}
+              <div class="tool-meta">
+                <div class="tool-meta-row">
+                  <span class="tool-meta-key">URL</span>
+                  <a href={tool.url} target="_blank" rel="noopener noreferrer" class="meta-link">
+                    {urlDisplay} ↗
+                  </a>
+                </div>
+                {ghPath && (
+                  <div class="tool-meta-row">
+                    <span class="tool-meta-key">GitHub</span>
+                    <a href={tool.github} target="_blank" rel="noopener noreferrer" class="meta-link">
+                      {ghPath} ↗
+                    </a>
+                  </div>
+                )}
+                <div class="tool-meta-row">
+                  <span class="tool-meta-key">Tags</span>
+                  <div class="tool-tags">
+                    {(tool.tags ?? []).map((tag: string) => (
+                      <span class="tool-tag">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </main>
+
+    <aside id="aside">
+      <div class="aside-block">
+        <div class="aside-label">Other sections</div>
+        <ul class="aside-list">
+          {allCats.map((sib) => (
+            <li>
+              <a
+                href={`/${sib.slug}/`}
+                class={`aside-item${sib.slug === cat.slug ? ' current' : ''}`}
+                aria-current={sib.slug === cat.slug ? 'page' : undefined}
+              >
+                <span class="aside-item-letter">{sib.letter}</span>
+                <span>{sib.name}</span>
+                <span class="aside-item-count">{sib.toolCount}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
-    </div>
 
-    <!-- Tools -->
-    <div class="flex items-center justify-between mb-6">
-      <h2 class="text-sm font-medium text-gray-500 uppercase tracking-wider">{tools.length} tools</h2>
-    </div>
-    <div class="grid gap-4 sm:grid-cols-2">
-      {tools.map((tool: any) => (
-        <ToolCard {...tool} />
-      ))}
-    </div>
+      <div class="aside-block">
+        <div class="aside-label">Submit</div>
+        <p class="aside-text">
+          Missing a tool? Open a pull request on GitHub. Every entry was added by a human and reviewed for spam.
+        </p>
+        <a
+          href="https://github.com/monkeybusiness-xyz/solana-toolbox"
+          target="_blank"
+          rel="noopener"
+          class="aside-cta"
+        >
+          github.com/monkeybusiness-xyz/solana-toolbox ↗
+        </a>
+      </div>
 
-    <!-- Back link -->
-    <div class="mt-16 pt-8 border-t border-[#1E1E2E]">
-      <a href="/" class="text-sm text-gray-500 hover:text-gray-300 transition-colors">
-        ← All categories
-      </a>
-    </div>
-  </main>
-</Base>
+      <div class="aside-block">
+        <div class="aside-label">Theme</div>
+        <button id="aside-toggle">
+          <span id="aside-dot"></span>
+          <span id="aside-toggle-label">DAY</span>
+        </button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Footer -->
+  <div id="foot">
+    <a href="/" class="folio-link">← Back to index</a>
+    <span>—</span>
+    <span>Curated by monkeybusiness · MIT ·
+      <a href="/about" class="folio-link">about</a>
+    </span>
+  </div>
+
+</div>
+
+<script define:vars={{ totalTools }}>
+  const html = document.getElementById('ch');
+  const dot = document.getElementById('aside-dot');
+  const label = document.getElementById('aside-toggle-label');
+
+  function applyTheme(dark) {
+    html.classList.toggle('dark', dark);
+    if (dot) {
+      dot.style.background = dark ? 'var(--accent)' : 'var(--ink)';
+      dot.style.boxShadow = dark ? '0 0 6px var(--accent)' : 'none';
+    }
+    if (label) label.textContent = dark ? 'DARK' : 'DAY';
+  }
+
+  const saved = localStorage.getItem('catalog-theme');
+  applyTheme(saved === 'dark');
+
+  document.getElementById('aside-toggle').addEventListener('click', () => {
+    const dark = !html.classList.contains('dark');
+    applyTheme(dark);
+    localStorage.setItem('catalog-theme', dark ? 'dark' : 'light');
+  });
+
+  // Audience filter
+  const audBtns = Array.from(document.querySelectorAll('.aud-btn'));
+  const tools = Array.from(document.querySelectorAll('.tool'));
+  const countEl = document.getElementById('bar-count');
+
+  let currentAud = 'all';
+
+  function updateFilter() {
+    let visible = 0;
+    for (const tool of tools) {
+      const aud = tool.dataset.audience ?? 'both';
+      const show = currentAud === 'all' || aud === currentAud || aud === 'both';
+      tool.style.display = show ? '' : 'none';
+      if (show) visible++;
+    }
+    if (countEl) countEl.textContent = `${visible} of ${totalTools} entries`;
+  }
+
+  for (const btn of audBtns) {
+    btn.addEventListener('click', () => {
+      currentAud = btn.dataset.aud ?? 'all';
+      for (const b of audBtns) b.classList.toggle('active', b === btn);
+      updateFilter();
+    });
+  }
+</script>
+</body>
+</html>

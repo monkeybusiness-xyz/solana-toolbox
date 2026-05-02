@@ -58,6 +58,8 @@ const itemLists = catData.map((cat: any) => ({
   <meta property="og:description" content={description} />
   <meta property="og:site_name" content="Solana Toolbox" />
   <meta property="og:image" content="https://solana-toolbox.com/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Solana Toolbox" />
   <meta name="twitter:description" content={description} />
@@ -71,6 +73,13 @@ const itemLists = catData.map((cat: any) => ({
         "@id": "https://solana-toolbox.com/#organization",
         "name": "Solana Toolbox",
         "url": "https://solana-toolbox.com/",
+        "description": "A curated directory of tools, libraries, and resources for building on and using Solana.",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://solana-toolbox.com/og.png",
+          "width": 1200,
+          "height": 630,
+        },
         "sameAs": ["https://github.com/monkeybusiness-xyz/solana-toolbox"],
       },
       {
@@ -424,6 +433,13 @@ const itemLists = catData.map((cat: any) => ({
       color: var(--ink);
     }
 
+    .sec-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .sec-title a:hover { color: var(--accent); }
+
     .sec-desc {
       font-family: 'Newsreader', 'Times New Roman', serif;
       font-size: 17px;
@@ -668,7 +684,7 @@ const itemLists = catData.map((cat: any) => ({
               <div class="sec-kicker">
                 SECTION {String(ci + 1).padStart(2, '0')} · {cat.tools.length} ENTRIES
               </div>
-              <h2 class="sec-title">{cat.name}</h2>
+              <h2 class="sec-title"><a href={`/${cat.slug}/`}>{cat.name}</a></h2>
               <p class="sec-desc">{cat.issue}</p>
             </div>
           </div>
