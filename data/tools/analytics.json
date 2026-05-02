@@ -12,7 +12,7 @@
     "name": "Solana Explorer",
     "description": "The official Solana block explorer maintained by Solana Labs.",
     "url": "https://explorer.solana.com",
-    "github": "https://github.com/solana-labs/explorer",
+    "github": "https://github.com/solana-foundation/explorer",
     "tags": ["explorer", "official"],
     "audience": "both"
   },

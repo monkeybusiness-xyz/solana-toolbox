@@ -568,6 +568,19 @@ const itemLists = catData.map((cat: any) => ({
 
     .entry-url-sep { margin: 0 4px; }
 
+    .entry-url-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .entry-url-link:hover {
+      color: var(--accent);
+    }
+
     /* ── Footer ── */
     #foot {
       margin: 64px -56px 0;
@@ -737,12 +750,16 @@ const itemLists = catData.map((cat: any) => ({
                       ))}
                     </div>
                     <div class="entry-url">
-                      <span>↗</span>
-                      <span>{urlDisplay}</span>
+                      <a href={tool.url} target="_blank" rel="noopener noreferrer" class="entry-url-link">
+                        <span>↗</span>
+                        <span>{urlDisplay}</span>
+                      </a>
                       {ghPath && (
                         <>
                           <span class="entry-url-sep">·</span>
-                          <span>gh: {ghPath}</span>
+                          <a href={tool.github} target="_blank" rel="noopener noreferrer" class="entry-url-link">
+                            <span>gh: {ghPath}</span>
+                          </a>
                         </>
                       )}
                     </div>

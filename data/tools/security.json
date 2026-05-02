@@ -1,14 +1,5 @@
 [
   {
-    "name": "Anchor's built-in constraints",
-    "description": "Anchor's account validation constraints (has_one, constraint, owner, etc.) that prevent common attack vectors.",
-    "url": "https://www.anchor-lang.com/docs/account-constraints",
-    "github": "https://github.com/coral-xyz/anchor",
-    "tags": ["anchor", "constraints", "validation"],
-    "audience": "developer",
-    "note": "Your first line of defence."
-  },
-  {
     "name": "Sec3 (formerly Soteria)",
     "description": "Automated smart contract auditing tool and security platform for Solana programs.",
     "url": "https://sec3.dev",

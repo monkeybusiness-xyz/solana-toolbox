@@ -2,7 +2,7 @@
   {
     "name": "Token Extensions (Token-2022)",
     "description": "Solana's next-gen token program with transfer fees, confidential transfers, interest-bearing tokens, and more.",
-    "url": "https://spl.solana.com/token-2022",
+    "url": "https://www.solana-program.com/docs/token-2022",
     "github": "https://github.com/solana-labs/solana-program-library",
     "tags": ["token-program", "token-2022", "spl", "official"],
     "audience": "developer",
@@ -19,7 +19,7 @@
   {
     "name": "Metaplex Token Metadata",
     "description": "The standard for on-chain token metadata on Solana. Supports fungible tokens, NFTs, and editions.",
-    "url": "https://developers.metaplex.com/token-metadata",
+    "url": "https://www.metaplex.com/docs/smart-contracts/token-metadata",
     "github": "https://github.com/metaplex-foundation/mpl-token-metadata",
     "tags": ["metadata", "standard", "fungible", "nft"],
     "audience": "developer"
@@ -35,7 +35,7 @@
   {
     "name": "Squads",
     "description": "Multisig and on-chain treasury management for teams. Control tokens, programs, and funds with a multisig.",
-    "url": "https://squads.so",
+    "url": "https://squads.xyz",
     "github": "https://github.com/Squads-Protocol",
     "tags": ["multisig", "treasury", "governance", "security"],
     "audience": "both"

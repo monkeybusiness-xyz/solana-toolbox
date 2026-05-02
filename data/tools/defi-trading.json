@@ -43,7 +43,7 @@
   {
     "name": "Kamino Finance",
     "description": "Automated liquidity vaults and lending protocol on Solana. Optimizes concentrated liquidity positions.",
-    "url": "https://kamino.finance",
+    "url": "https://kamino.com",
     "github": "https://github.com/Kamino-Finance",
     "tags": ["lending", "liquidity", "yield", "vaults"],
     "audience": "both"

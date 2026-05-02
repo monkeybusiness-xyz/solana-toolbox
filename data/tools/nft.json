@@ -19,7 +19,7 @@
   {
     "name": "Candy Machine",
     "description": "Metaplex's on-chain NFT minting program. Powers the majority of NFT launches on Solana.",
-    "url": "https://developers.metaplex.com/candy-machine",
+    "url": "https://www.metaplex.com/docs/smart-contracts/candy-machine",
     "github": "https://github.com/metaplex-foundation/mpl-candy-machine",
     "tags": ["minting", "launchpad", "metaplex"],
     "audience": "developer"
@@ -31,14 +31,6 @@
     "github": "https://github.com/tensor-foundation",
     "tags": ["marketplace", "trading", "analytics"],
     "audience": "both"
-  },
-  {
-    "name": "Compressed NFTs (cNFTs)",
-    "description": "Metaplex's Bubblegum program for minting millions of NFTs at near-zero cost using state compression.",
-    "url": "https://developers.metaplex.com/bubblegum",
-    "github": "https://github.com/metaplex-foundation/mpl-bubblegum",
-    "tags": ["compression", "minting", "metaplex", "bubblegum"],
-    "audience": "developer"
   },
   {
     "name": "Underdog Protocol",

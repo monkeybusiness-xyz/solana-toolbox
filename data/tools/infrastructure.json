@@ -43,7 +43,7 @@
   {
     "name": "Geyser Plugins",
     "description": "Solana validator plugin interface for streaming real-time account and transaction updates.",
-    "url": "https://docs.solanalabs.com/validator/geyser",
+    "url": "https://docs.anza.xyz/validator/geyser",
     "github": "https://github.com/solana-labs/solana",
     "tags": ["streaming", "real-time", "validator", "plugin"],
     "audience": "developer"

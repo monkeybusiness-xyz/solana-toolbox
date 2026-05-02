@@ -2,8 +2,8 @@
   {
     "name": "Solana Web3.js",
     "description": "The official JavaScript/TypeScript SDK for interacting with the Solana JSON RPC API.",
-    "url": "https://solana-labs.github.io/solana-web3.js/",
-    "github": "https://github.com/solana-labs/solana-web3.js",
+    "url": "https://www.solanakit.com/docs/getting-started",
+    "github": "https://github.com/solana-foundation/solana-web3.js",
     "tags": ["javascript", "typescript", "sdk", "official"],
     "audience": "developer",
     "note": "Default choice."
@@ -12,7 +12,7 @@
     "name": "Anchor",
     "description": "A framework for Solana's Sealevel runtime providing several convenient developer tools and an IDL specification.",
     "url": "https://www.anchor-lang.com/",
-    "github": "https://github.com/coral-xyz/anchor",
+    "github": "https://github.com/solana-foundation/anchor",
     "tags": ["rust", "framework", "smart-contracts", "idl"],
     "audience": "developer",
     "note": "Editor's pick for on-chain programs."
@@ -20,7 +20,7 @@
   {
     "name": "Solana Python (solders / solana-py)",
     "description": "Python bindings and SDK for Solana. solders provides fast Rust-backed types; solana-py provides the RPC client.",
-    "url": "https://michaelhly.github.io/solana-py/",
+    "url": "https://michaelhly.com/solana-py/",
     "github": "https://github.com/michaelhly/solana-py",
     "tags": ["python", "sdk"],
     "audience": "developer"
@@ -28,8 +28,8 @@
   {
     "name": "Gill",
     "description": "A lightweight, modern TypeScript library for Solana with a minimal footprint and tree-shakable API.",
-    "url": "https://gill.site/",
-    "github": "https://github.com/solana-foundation/gill",
+    "url": "https://gillsdk.com",
+    "github": "https://github.com/gillsdk/gill",
     "tags": ["typescript", "sdk", "lightweight"],
     "audience": "developer"
   },
@@ -37,24 +37,16 @@
     "name": "Solana Go",
     "description": "Go client library and utilities for the Solana blockchain.",
     "url": "https://pkg.go.dev/github.com/gagliardetto/solana-go",
-    "github": "https://github.com/gagliardetto/solana-go",
+    "github": "https://github.com/solana-foundation/solana-go",
     "tags": ["go", "sdk"],
     "audience": "developer"
   },
   {
     "name": "Metaplex JS SDK",
     "description": "JavaScript SDK for interacting with Metaplex programs — NFT minting, auction houses, and more.",
-    "url": "https://developers.metaplex.com/",
+    "url": "https://www.metaplex.com/docs",
     "github": "https://github.com/metaplex-foundation/umi",
     "tags": ["javascript", "typescript", "nft", "metaplex"],
-    "audience": "developer"
-  },
-  {
-    "name": "Seahorse",
-    "description": "Write Solana programs in Python. Seahorse compiles Python code to Anchor/Rust under the hood.",
-    "url": "https://seahorse-lang.org/",
-    "github": "https://github.com/ameliatastic/seahorse-lang",
-    "tags": ["python", "smart-contracts", "transpiler"],
     "audience": "developer"
   },
   {
