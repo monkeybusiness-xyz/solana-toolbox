@@ -1,47 +1,399 @@
 ---
-import Base from '../layouts/Base.astro';
+import '@fontsource-variable/newsreader/opsz.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/500.css';
 ---
+<!doctype html>
+<html lang="en" id="ch">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="About Solana Toolbox — a curated directory of tools for building on and using Solana, maintained by Erik Strömberg." />
+  <link rel="canonical" href="https://solana-toolbox.com/about/" />
+  <title>About — Solana Toolbox</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-<Base title="About — Solana Toolbox" description="Solana Toolbox is a community-curated directory of tools, libraries, and resources for building on and using Solana.">
-  <main class="max-w-2xl mx-auto px-4 sm:px-6 py-16">
-    <h1 class="text-3xl font-bold text-white mb-8">About</h1>
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://solana-toolbox.com/about/" />
+  <meta property="og:title" content="About — Solana Toolbox" />
+  <meta property="og:description" content="About Solana Toolbox — a curated directory of tools for building on and using Solana, maintained by Erik Strömberg." />
+  <meta property="og:site_name" content="Solana Toolbox" />
+  <meta property="og:image" content="https://solana-toolbox.com/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="About — Solana Toolbox" />
+  <meta name="twitter:description" content="About Solana Toolbox — a curated directory of tools for building on and using Solana, maintained by Erik Strömberg." />
+  <meta name="twitter:image" content="https://solana-toolbox.com/og.png" />
 
-    <div class="space-y-6 text-gray-400 leading-relaxed">
-      <p>
-        Solana Toolbox is a community-curated directory of tools, libraries, and resources for
-        building on and using Solana. The goal is to make it easy to discover what's available
-        in the ecosystem — whether you're a developer looking for the right SDK or a user
-        exploring wallets and DeFi apps.
-      </p>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://solana-toolbox.com/#organization",
+        "name": "Solana Toolbox",
+        "url": "https://solana-toolbox.com/",
+        "description": "A curated directory of tools, libraries, and resources for building on and using Solana.",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://solana-toolbox.com/og.png",
+          "width": 1200,
+          "height": 630,
+        },
+        "sameAs": ["https://github.com/monkeybusiness-xyz/solana-toolbox"],
+        "founder": {
+          "@type": "Person",
+          "@id": "https://solana-toolbox.com/#curator",
+          "name": "Erik Strömberg",
+          "url": "https://github.com/apa512",
+          "sameAs": ["https://github.com/apa512"],
+        },
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://solana-toolbox.com/#website",
+        "name": "Solana Toolbox",
+        "url": "https://solana-toolbox.com/",
+        "publisher": { "@id": "https://solana-toolbox.com/#organization" },
+      },
+      {
+        "@type": "AboutPage",
+        "@id": "https://solana-toolbox.com/about/#webpage",
+        "url": "https://solana-toolbox.com/about/",
+        "name": "About — Solana Toolbox",
+        "isPartOf": { "@id": "https://solana-toolbox.com/#website" },
+        "about": { "@id": "https://solana-toolbox.com/#organization" },
+        "inLanguage": "en-US",
+      },
+    ],
+  })} />
 
-      <p>
-        Every listing is open to community review. If a tool is missing, outdated, or incorrectly
-        described, anyone can open an issue or pull request on GitHub.
-      </p>
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <script>
+    window.addEventListener('load', function() {
+      var s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-4VQYB5F5VC';
+      s.async = true;
+      document.head.appendChild(s);
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      function gtag(...args: any[]) { (window as any).dataLayer.push(args); }
+      gtag('js', new Date());
+      gtag('config', 'G-4VQYB5F5VC');
+    });
+  </script>
 
-      <h2 class="text-xl font-semibold text-white pt-4">How tools are listed</h2>
+  <style>
+    :root {
+      --bg: #F1EADB;
+      --ink: #0F1A14;
+      --ink-soft: #4D5A52;
+      --rule: rgba(15,26,20,0.12);
+      --rule-strong: #0F1A14;
+      --accent: #0B6B3A;
+      --accent2: #C5158A;
+      --sel-bg: #0F1A14;
+      --sel-fg: #F1EADB;
+      --glow: none;
+    }
 
-      <p>
-        Tools are included based on community submissions. We aim to list tools that are actively
-        maintained and genuinely useful. Listings are not paid placements — no tool pays to appear
-        here.
-      </p>
+    #ch.dark {
+      --bg: #0A0A0F;
+      --ink: #E8E4D8;
+      --ink-soft: #9A93A8;
+      --rule: rgba(232,228,216,0.10);
+      --rule-strong: rgba(232,228,216,0.40);
+      --accent: #14F195;
+      --accent2: #9945FF;
+      --sel-bg: #14F195;
+      --sel-fg: #0A0A0F;
+      --glow: radial-gradient(circle at 0% 0%, rgba(153,69,255,0.08), transparent 40%),
+              radial-gradient(circle at 100% 0%, rgba(20,241,149,0.05), transparent 45%);
+    }
 
-      <h2 class="text-xl font-semibold text-white pt-4">Contributing</h2>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
 
-      <p>
-        The directory is open source. To add or improve a listing, open an issue or pull request
-        on GitHub:
-      </p>
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'IBM Plex Mono', 'Menlo', 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
 
-      <a
-        href="https://github.com/monkeybusiness-xyz/solana-toolbox"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-block text-sm font-medium text-[#14F195] hover:underline"
-      >
-        github.com/monkeybusiness-xyz/solana-toolbox →
-      </a>
+    ::selection { background: var(--sel-bg); color: var(--sel-fg); }
+
+    #shell {
+      padding: 32px 56px 64px;
+      min-height: 100%;
+      background-image: var(--glow);
+    }
+
+    /* ── Folio ── */
+    #folio {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-size: 10px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      border-bottom: 1px solid var(--rule-strong);
+      margin: 0 -56px;
+      padding: 0 56px 8px;
+    }
+
+    #folio-right {
+      margin-left: auto;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .folio-link {
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .folio-link:hover { color: var(--accent); }
+
+    #theme-toggle {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: transparent;
+      border: 1px solid var(--ink);
+      padding: 3px 9px;
+      cursor: pointer;
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    #theme-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--ink);
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    /* ── Hero ── */
+    #hero {
+      border-bottom: 4px double var(--rule-strong);
+      margin: 0 -56px;
+      padding: 48px 56px 40px;
+      max-width: 100%;
+    }
+
+    #hero-kicker {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    #hero-title {
+      font-family: 'Newsreader Variable', 'Times New Roman', serif;
+      font-weight: 700;
+      font-size: clamp(52px, 7vw, 96px);
+      line-height: 0.96;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+
+    /* ── Content ── */
+    #content {
+      max-width: 680px;
+      padding-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .prose p {
+      font-family: 'Newsreader Variable', 'Times New Roman', serif;
+      font-size: clamp(16px, 1.5vw, 20px);
+      line-height: 1.55;
+      color: var(--ink);
+    }
+
+    .prose p + p { margin-top: 16px; }
+
+    .prose a {
+      color: var(--ink);
+      border-bottom: 1px solid var(--rule-strong);
+      text-decoration: none;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .prose a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* ── Footer ── */
+    #foot {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-size: 10px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      border-top: 1px solid var(--rule-strong);
+      margin: 64px -56px 0;
+      padding: 12px 56px 0;
+    }
+
+    #foot a {
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    #foot a:hover { color: var(--accent); }
+
+    @media (max-width: 900px) {
+      #shell { padding: 24px 24px 48px; }
+      #folio, #hero, #foot {
+        margin-left: -24px;
+        margin-right: -24px;
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      #shell { padding: 20px 20px 40px; }
+      #folio, #hero, #foot {
+        margin-left: -20px;
+        margin-right: -20px;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div id="shell">
+
+  <!-- Folio -->
+  <div id="folio">
+    <a href="/" class="folio-link">← solana-toolbox.com</a>
+    <span>—</span>
+    <span>About</span>
+    <span id="folio-right">
+      <button id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+        <span id="theme-dot"></span>
+        <span id="theme-label">DAY</span>
+      </button>
+    </span>
+  </div>
+
+  <!-- Hero -->
+  <div id="hero">
+    <div id="hero-kicker">Solana Toolbox</div>
+    <h1 id="hero-title">About</h1>
+  </div>
+
+  <!-- Content -->
+  <div id="content">
+
+    <div>
+      <div class="section-label">The directory</div>
+      <div class="prose">
+        <p>
+          Solana Toolbox is a curated directory of tools, libraries, and resources for
+          building on and using Solana. The goal is to make it easy to discover what's available
+          in the ecosystem — whether you're a developer looking for the right SDK or a user
+          exploring wallets and DeFi apps.
+        </p>
+      </div>
     </div>
-  </main>
-</Base>
+
+    <div>
+      <div class="section-label">Curator</div>
+      <div class="prose">
+        <p>
+          This directory is curated by <a href="https://github.com/apa512" target="_blank" rel="noopener noreferrer">Erik Strömberg</a>,
+          a developer who has been building on and following the Solana ecosystem for several years.
+          The tool selections and editorial notes reflect direct experience with what actually works
+          in practice.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label">How tools are listed</div>
+      <div class="prose">
+        <p>
+          Tools are included if they are actively maintained, publicly documented, and have
+          demonstrable usage in the ecosystem. Deprecated tools are removed or flagged.
+          Listings are not paid placements — no tool pays to appear here.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label">Contributing</div>
+      <div class="prose">
+        <p>
+          The directory is open source. To add or improve a listing, open an issue or pull request on
+          <a href="https://github.com/monkeybusiness-xyz/solana-toolbox" target="_blank" rel="noopener noreferrer">GitHub</a>.
+          Every entry was added by a human and reviewed for spam.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div id="foot">
+    <a href="/">← Back to index</a>
+    <span>—</span>
+    <span>Curated by <a href="https://github.com/apa512" target="_blank" rel="noopener">Erik Strömberg</a> · MIT</span>
+  </div>
+
+</div>
+
+<script>
+  const html = document.getElementById('ch');
+  const dot = document.getElementById('theme-dot');
+  const label = document.getElementById('theme-label');
+
+  function applyTheme(dark: boolean) {
+    html!.classList.toggle('dark', dark);
+    if (dot) {
+      (dot as HTMLElement).style.background = dark ? 'var(--accent)' : 'var(--ink)';
+      (dot as HTMLElement).style.boxShadow = dark ? '0 0 6px var(--accent)' : 'none';
+    }
+    if (label) label.textContent = dark ? 'DARK' : 'DAY';
+  }
+
+  const saved = localStorage.getItem('catalog-theme');
+  applyTheme(saved === 'dark');
+
+  document.getElementById('theme-toggle')!.addEventListener('click', () => {
+    const dark = !html!.classList.contains('dark');
+    applyTheme(dark);
+    localStorage.setItem('catalog-theme', dark ? 'dark' : 'light');
+  });
+</script>
+</body>
+</html>
