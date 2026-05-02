@@ -1,10 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#9945FF"/>
-      <stop offset="100%" stop-color="#14F195"/>
-    </linearGradient>
-  </defs>
-  <rect width="128" height="128" rx="24" fill="url(#g)"/>
-  <text x="64" y="92" font-family="system-ui, -apple-system, sans-serif" font-size="78" font-weight="700" fill="black" text-anchor="middle">S</text>
+
+  <rect width="128" height="128" rx="20" fill="#F1EADB"/>
+
+  <path d="M 88 0 L 128 0 L 128 40 Z" fill="#14F195"/>
+
+  <path d="M 28 32 L 22 32 L 22 96 L 28 96" fill="none" stroke="#0F1A14" stroke-width="8" stroke-linecap="square" stroke-linejoin="miter"/>
+
+  <path d="M 100 32 L 106 32 L 106 96 L 100 96" fill="none" stroke="#0F1A14" stroke-width="8" stroke-linecap="square" stroke-linejoin="miter"/>
+
+  <path d="M 78 44
+           C 78 38, 73 34, 64 34
+           C 55 34, 50 38, 50 46
+           C 50 52, 54 55, 64 58
+           C 76 61, 80 65, 80 73
+           C 80 82, 73 88, 64 88
+           C 55 88, 50 84, 50 78" fill="none" stroke="#0F1A14" stroke-width="9" stroke-linecap="square" stroke-linejoin="miter"/>
 </svg>
