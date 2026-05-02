@@ -1,6 +1,5 @@
 ---
 import '@fontsource-variable/newsreader/opsz.css';
-import '@fontsource-variable/newsreader/opsz-italic.css';
 import '@fontsource/ibm-plex-mono/400.css';
 import '@fontsource/ibm-plex-mono/500.css';
 import '@fontsource/ibm-plex-mono/600.css';
@@ -47,6 +46,7 @@ const itemLists = catData.map((cat: any) => ({
 <html lang="en" id="ch">
 <head>
   <meta charset="UTF-8" />
+  <script>if(localStorage.getItem('catalog-theme')==='dark')document.documentElement.classList.add('dark')</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={description} />
   <link rel="canonical" href="https://solana-toolbox.com/" />
@@ -619,7 +619,7 @@ const itemLists = catData.map((cat: any) => ({
       <span>An index of working tools</span>
       <span id="folio-right">
         <span>Issue 14 · 05.2026 · Page 01</span>
-        <button id="theme-toggle" title="Toggle theme" aria-label="Toggle dark mode">
+        <button id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
           <span id="theme-dot"></span>
           <span id="theme-label">DAY</span>
         </button>
@@ -682,7 +682,7 @@ const itemLists = catData.map((cat: any) => ({
     </div>
 
     <!-- Sections -->
-    <div id="body">
+    <main id="body">
       {catData.map((cat: any, ci: number) => (
         <section id={cat.slug} class="cat-section">
 
@@ -753,7 +753,7 @@ const itemLists = catData.map((cat: any) => ({
           </div>
         </section>
       ))}
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer id="foot">

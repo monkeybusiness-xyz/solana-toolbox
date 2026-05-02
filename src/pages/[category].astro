@@ -1,6 +1,5 @@
 ---
 import '@fontsource-variable/newsreader/opsz.css';
-import '@fontsource-variable/newsreader/opsz-italic.css';
 import '@fontsource/ibm-plex-mono/400.css';
 import '@fontsource/ibm-plex-mono/500.css';
 import '@fontsource/ibm-plex-mono/600.css';
@@ -64,6 +63,7 @@ const totalTools = tools.length;
 <html lang="en" id="ch">
 <head>
   <meta charset="UTF-8" />
+  <script>if(localStorage.getItem('catalog-theme')==='dark')document.documentElement.classList.add('dark')</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={pageDesc} />
   <link rel="canonical" href={canonicalURL} />
