@@ -1,14 +1,327 @@
 ---
-import Base from '../layouts/Base.astro';
+import '@fontsource-variable/newsreader/opsz.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/500.css';
 ---
+<!doctype html>
+<html lang="en" id="ch">
+<head>
+  <meta charset="UTF-8" />
+  <script>if(localStorage.getItem('catalog-theme')==='dark')document.documentElement.classList.add('dark')</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="That page doesn't exist on Solana Toolbox." />
+  <meta name="robots" content="noindex" />
+  <title>Page not found — Solana Toolbox</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-<Base title="Page Not Found — Solana Toolbox" description="This page doesn't exist.">
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-32 text-center">
-    <p class="text-xs font-bold uppercase tracking-widest mb-4 text-transparent bg-clip-text" style="background-image: linear-gradient(90deg, #9945FF, #14F195);">404</p>
-    <h1 class="text-4xl font-bold text-white mb-6">Page not found</h1>
-    <p class="text-gray-400 mb-10">That URL doesn't exist.</p>
-    <a href="/" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors">
-      ← Back to all tools
-    </a>
-  </main>
-</Base>
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <script>
+    window.addEventListener('load', function() {
+      var s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-4VQYB5F5VC';
+      s.async = true;
+      document.head.appendChild(s);
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      function gtag(...args: any[]) { (window as any).dataLayer.push(args); }
+      gtag('js', new Date());
+      gtag('config', 'G-4VQYB5F5VC');
+    });
+  </script>
+
+  <style>
+    :root {
+      --bg: #F1EADB;
+      --ink: #0F1A14;
+      --ink-soft: #4D5A52;
+      --rule: rgba(15,26,20,0.12);
+      --rule-strong: #0F1A14;
+      --accent: #0B6B3A;
+      --accent2: #C5158A;
+      --sel-bg: #0F1A14;
+      --sel-fg: #F1EADB;
+      --glow: none;
+    }
+
+    #ch.dark {
+      --bg: #0A0A0F;
+      --ink: #E8E4D8;
+      --ink-soft: #9A93A8;
+      --rule: rgba(232,228,216,0.10);
+      --rule-strong: rgba(232,228,216,0.40);
+      --accent: #14F195;
+      --accent2: #9945FF;
+      --sel-bg: #14F195;
+      --sel-fg: #0A0A0F;
+      --glow: radial-gradient(circle at 0% 0%, rgba(153,69,255,0.08), transparent 40%),
+              radial-gradient(circle at 100% 0%, rgba(20,241,149,0.05), transparent 45%);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'IBM Plex Mono', 'Menlo', 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    ::selection { background: var(--sel-bg); color: var(--sel-fg); }
+
+    #shell {
+      padding: 32px 56px 64px;
+      min-height: 100%;
+      background-image: var(--glow);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Folio ── */
+    #folio {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-size: 10px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      border-bottom: 1px solid var(--rule-strong);
+      margin: 0 -56px;
+      padding: 0 56px 8px;
+    }
+
+    #folio-right {
+      margin-left: auto;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .folio-link {
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .folio-link:hover { color: var(--accent); }
+
+    #theme-toggle {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: transparent;
+      border: 1px solid var(--ink);
+      padding: 3px 9px;
+      cursor: pointer;
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    #theme-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--ink);
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    /* ── Hero ── */
+    #hero {
+      border-bottom: 4px double var(--rule-strong);
+      margin: 0 -56px;
+      padding: 48px 56px 40px;
+    }
+
+    #hero-kicker {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    #hero-code {
+      font-family: 'Newsreader Variable', 'Times New Roman', serif;
+      font-weight: 900;
+      font-size: clamp(96px, 16vw, 220px);
+      line-height: 0.9;
+      letter-spacing: -0.05em;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    #ch.dark #hero-code {
+      text-shadow: 0 0 40px color-mix(in srgb, var(--accent) 33%, transparent);
+    }
+
+    #hero-title {
+      font-family: 'Newsreader Variable', 'Times New Roman', serif;
+      font-weight: 700;
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    /* ── Content ── */
+    #content {
+      max-width: 680px;
+      padding-top: 48px;
+      flex: 1;
+    }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .prose p {
+      font-family: 'Newsreader Variable', 'Times New Roman', serif;
+      font-size: clamp(16px, 1.5vw, 20px);
+      line-height: 1.55;
+      color: var(--ink);
+    }
+
+    .prose p + p { margin-top: 16px; }
+
+    .prose a {
+      color: var(--ink);
+      border-bottom: 1px solid var(--rule-strong);
+      text-decoration: none;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .prose a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* ── Footer ── */
+    #foot {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-size: 10px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      border-top: 1px solid var(--rule-strong);
+      margin: 64px -56px 0;
+      padding: 12px 56px 0;
+    }
+
+    #foot a {
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    #foot a:hover { color: var(--accent); }
+
+    @media (max-width: 900px) {
+      #shell { padding: 24px 24px 48px; }
+      #folio, #hero, #foot {
+        margin-left: -24px;
+        margin-right: -24px;
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      #shell { padding: 20px 20px 40px; }
+      #folio, #hero, #foot {
+        margin-left: -20px;
+        margin-right: -20px;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div id="shell">
+
+  <!-- Folio -->
+  <div id="folio">
+    <a href="/" class="folio-link">← solana-toolbox.com</a>
+    <span>—</span>
+    <span>Errata</span>
+    <span id="folio-right">
+      <button id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+        <span id="theme-dot"></span>
+        <span id="theme-label">DAY</span>
+      </button>
+    </span>
+  </div>
+
+  <!-- Hero -->
+  <div id="hero">
+    <div id="hero-kicker">Page not found · Error 404</div>
+    <div id="hero-code">404</div>
+    <h1 id="hero-title">This entry isn't in the index.</h1>
+  </div>
+
+  <!-- Content -->
+  <div id="content">
+    <div>
+      <div class="section-label">What happened</div>
+      <div class="prose">
+        <p>
+          The URL you followed doesn't match anything in our catalog. It may have moved, the
+          link may be stale, or the page never existed. Either way — head back to the
+          <a href="/">main index</a> or browse the
+          <a href="/about/">about page</a> to find your bearings.
+        </p>
+        <p>
+          Spotted a broken link on the site itself? Open an issue on
+          <a href="https://github.com/monkeybusiness-xyz/solana-toolbox" target="_blank" rel="noopener noreferrer">GitHub</a>
+          and we'll fix it.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div id="foot">
+    <a href="/">← Back to index</a>
+    <span>—</span>
+    <span>Curated by <a href="https://github.com/apa512" target="_blank" rel="noopener">Erik Strömberg</a> · MIT</span>
+  </div>
+
+</div>
+
+<script>
+  const html = document.getElementById('ch');
+  const dot = document.getElementById('theme-dot');
+  const label = document.getElementById('theme-label');
+
+  function applyTheme(dark: boolean) {
+    html!.classList.toggle('dark', dark);
+    if (dot) {
+      (dot as HTMLElement).style.background = dark ? 'var(--accent)' : 'var(--ink)';
+      (dot as HTMLElement).style.boxShadow = dark ? '0 0 6px var(--accent)' : 'none';
+    }
+    if (label) label.textContent = dark ? 'DARK' : 'DAY';
+  }
+
+  const saved = localStorage.getItem('catalog-theme');
+  applyTheme(saved === 'dark');
+
+  document.getElementById('theme-toggle')!.addEventListener('click', () => {
+    const dark = !html!.classList.contains('dark');
+    applyTheme(dark);
+    localStorage.setItem('catalog-theme', dark ? 'dark' : 'light');
+  });
+</script>
+</body>
+</html>
