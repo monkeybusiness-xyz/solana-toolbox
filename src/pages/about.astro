@@ -35,20 +35,21 @@ import '@fontsource/ibm-plex-mono/500.css';
         "name": "Solana Toolbox",
         "url": "https://solana-toolbox.com/",
         "description": "A curated directory of tools, libraries, and resources for building on and using Solana.",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://solana-toolbox.com/og.png",
-          "width": 1200,
-          "height": 630,
-        },
         "sameAs": ["https://github.com/monkeybusiness-xyz/solana-toolbox"],
-        "founder": {
-          "@type": "Person",
-          "@id": "https://solana-toolbox.com/#curator",
-          "name": "Erik Strömberg",
-          "url": "https://github.com/apa512",
-          "sameAs": ["https://github.com/apa512"],
-        },
+        "founder": { "@id": "https://solana-toolbox.com/#curator" },
+      },
+      {
+        "@type": "Person",
+        "@id": "https://solana-toolbox.com/#curator",
+        "name": "Erik Strömberg",
+        "url": "https://ducktype.tech/",
+        "jobTitle": "Software engineer",
+        "description": "Software engineer building on Solana since 2021. Co-founder of PEZ.fun. Previously blockchain engineer at Contribute.xyz.",
+        "sameAs": [
+          "https://github.com/apa512",
+          "https://x.com/apa512",
+          "https://ducktype.tech/",
+        ],
       },
       {
         "@type": "WebSite",
@@ -62,8 +63,12 @@ import '@fontsource/ibm-plex-mono/500.css';
         "@id": "https://solana-toolbox.com/about/#webpage",
         "url": "https://solana-toolbox.com/about/",
         "name": "About — Solana Toolbox",
+        "description": "About Solana Toolbox, a curated directory of tools for building on and using Solana, maintained by Erik Strömberg.",
+        "datePublished": "2026-04-20",
+        "dateModified": "2026-05-13",
         "isPartOf": { "@id": "https://solana-toolbox.com/#website" },
         "about": { "@id": "https://solana-toolbox.com/#organization" },
+        "author": { "@id": "https://solana-toolbox.com/#curator" },
         "inLanguage": "en-US",
       },
     ],
@@ -321,20 +326,30 @@ import '@fontsource/ibm-plex-mono/500.css';
         <p>
           Solana Toolbox is a curated directory of tools, libraries, and resources for
           building on and using Solana. The goal is to make it easy to discover what's available
-          in the ecosystem — whether you're a developer looking for the right SDK or a user
-          exploring wallets and DeFi apps.
+          in the ecosystem, whether you're a developer looking for the right SDK or a user
+          exploring wallets and DeFi apps. New tools are added each issue, and deprecated ones
+          are flagged and eventually removed.
         </p>
       </div>
     </div>
 
     <div>
-      <div class="section-label">Curator</div>
+      <div class="section-label">Background</div>
       <div class="prose">
         <p>
-          This directory is curated by <a href="https://github.com/apa512" target="_blank" rel="noopener noreferrer">Erik Strömberg</a>,
-          a developer who has been building on and following the Solana ecosystem for several years.
-          The tool selections and editorial notes reflect direct experience with what actually works
-          in practice.
+          This directory is curated by <a href="https://ducktype.tech/" target="_blank" rel="noopener noreferrer">Erik Strömberg</a>.
+          I've been building on Solana since 2021. First as a blockchain engineer at Contribute.xyz,
+          where I worked on Solana programs and the React and Node services around them, and
+          currently as co-founder of <a href="https://pez.fun" target="_blank" rel="noopener noreferrer">PEZ.fun</a>.
+          Before Solana I spent a decade in full-stack web (Rails, Clojure, JavaScript) and shipped
+          open-source work like <a href="https://github.com/apa512/clj-rethinkdb" target="_blank" rel="noopener noreferrer">clj-rethinkdb</a>.
+        </p>
+        <p>
+          My day-to-day for the last few years has been writing Anchor programs, integrating with
+          RPC providers like Helius and Jito, evaluating wallet adapters for production apps, and
+          debugging the kinds of failures that only show up under real load. The tools listed here
+          are ones I either use, have evaluated for real projects, or have seen carry weight in
+          production. Full work history at <a href="https://ducktype.tech/" target="_blank" rel="noopener noreferrer">ducktype.tech</a>.
         </p>
       </div>
     </div>
@@ -343,9 +358,37 @@ import '@fontsource/ibm-plex-mono/500.css';
       <div class="section-label">How tools are listed</div>
       <div class="prose">
         <p>
-          Tools are included if they are actively maintained, publicly documented, and have
-          demonstrable usage in the ecosystem. Deprecated tools are removed or flagged.
-          Listings are not paid placements — no tool pays to appear here.
+          Tools are included if they meet three criteria, applied in order. First, actively
+          maintained: a meaningful commit, release, or audit in roughly the last six months.
+          Second, publicly documented: a real docs site or README that lets someone start using
+          the tool without reading the source. Third, used in production: at least one credible
+          Solana project relies on it, or it's the canonical implementation of a primitive.
+        </p>
+        <p>
+          A concrete example of what gets cut: solana-bankrun was removed and replaced with
+          LiteSVM after the upstream project went unmaintained and the LiteSVM team explicitly
+          took on the role. Editorial notes flag transitions like this where they matter.
+        </p>
+        <p>
+          Listings are not paid placements. No tool pays to appear here, and there are no
+          affiliate links.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label">Badges and conventions</div>
+      <div class="prose">
+        <p>
+          Each entry is tagged with one of three audience labels. <strong>DEV</strong> means
+          primarily a developer tool (SDKs, frameworks, RPC, indexers). <strong>USER</strong>
+          means primarily for end users (wallets, explorers, trading interfaces).
+          <strong>DEV · USER</strong> means relevant to both audiences.
+        </p>
+        <p>
+          A star (★) next to a tool means it's an editorial pick, the one I'd reach for first
+          in that category. Editorial notes call out non-obvious tradeoffs, deprecation history,
+          or production-readiness gotchas.
         </p>
       </div>
     </div>
@@ -354,9 +397,10 @@ import '@fontsource/ibm-plex-mono/500.css';
       <div class="section-label">Contributing</div>
       <div class="prose">
         <p>
-          The directory is open source. To add or improve a listing, open an issue or pull request on
+          The directory is open source. To suggest a tool, flag a stale entry, or push back on
+          a listing, file an issue or pull request on
           <a href="https://github.com/monkeybusiness-xyz/solana-toolbox" target="_blank" rel="noopener noreferrer">GitHub</a>.
-          Every entry was added by a human and reviewed for spam.
+          Every entry is added by a human and reviewed for spam.
         </p>
       </div>
     </div>
