@@ -171,7 +171,7 @@ const itemLists = catData.map((cat: any) => ({
 
     /* ── Shell ── */
     #shell {
-      padding: 32px 56px 64px;
+      padding: 32px 56px 0;
       min-height: 100%;
       background-image: var(--glow);
     }
@@ -584,7 +584,7 @@ const itemLists = catData.map((cat: any) => ({
     /* ── Footer ── */
     #foot {
       margin: 64px -56px 0;
-      padding: 16px 56px 0;
+      padding: 16px 56px;
       border-top: 4px double var(--rule-strong);
       display: flex;
       gap: 16px;
@@ -604,11 +604,11 @@ const itemLists = catData.map((cat: any) => ({
 
     /* ── Responsive ── */
     @media (max-width: 900px) {
-      #shell { padding: 20px 24px 48px; }
+      #shell { padding: 20px 24px 0; }
       #folio { margin: 0 -24px; padding: 0 24px 8px; }
       #title-slab { margin: 0 -24px; padding: 36px 24px; }
       #filter-bar { margin: 0 -24px; padding: 10px 24px; }
-      #foot { margin: 64px -24px 0; padding: 16px 24px 0; }
+      #foot { margin: 64px -24px 0; padding: 16px 24px; }
       #title-row { grid-template-columns: 1fr; gap: 24px; }
       .entry-grid { grid-template-columns: 1fr; }
       .sec-letter { font-size: 72px; min-width: 64px; }
@@ -778,10 +778,8 @@ const itemLists = catData.map((cat: any) => ({
       <span>—</span>
       <span>
         Curated by <a href="https://github.com/apa512" target="_blank" rel="noopener">Erik Strömberg</a> ·
-        <a href="https://github.com/monkeybusiness-xyz/solana-toolbox" target="_blank" rel="noopener">
-          open source
-        </a>
-        · MIT ·
+        <a href="https://github.com/monkeybusiness-xyz/solana-toolbox" target="_blank" rel="noopener">open source</a> ·
+        MIT ·
         <a href="/about">about</a>
       </span>
     </footer>

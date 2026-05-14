@@ -132,7 +132,7 @@ import '@fontsource/ibm-plex-mono/500.css';
     ::selection { background: var(--sel-bg); color: var(--sel-fg); }
 
     #shell {
-      padding: 32px 56px 64px;
+      padding: 32px 56px 0;
       min-height: 100%;
       background-image: var(--glow);
     }
@@ -264,7 +264,7 @@ import '@fontsource/ibm-plex-mono/500.css';
       color: var(--ink-soft);
       border-top: 1px solid var(--rule-strong);
       margin: 64px -56px 0;
-      padding: 12px 56px 0;
+      padding: 12px 56px;
     }
 
     #foot a {
@@ -275,7 +275,7 @@ import '@fontsource/ibm-plex-mono/500.css';
     #foot a:hover { color: var(--accent); }
 
     @media (max-width: 900px) {
-      #shell { padding: 24px 24px 48px; }
+      #shell { padding: 24px 24px 0; }
       #folio, #hero, #foot {
         margin-left: -24px;
         margin-right: -24px;
@@ -285,7 +285,7 @@ import '@fontsource/ibm-plex-mono/500.css';
     }
 
     @media (max-width: 560px) {
-      #shell { padding: 20px 20px 40px; }
+      #shell { padding: 20px 20px 0; }
       #folio, #hero, #foot {
         margin-left: -20px;
         margin-right: -20px;
