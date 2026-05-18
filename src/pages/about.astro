@@ -82,7 +82,7 @@ import '@fontsource/ibm-plex-mono/500.css';
       s.async = true;
       document.head.appendChild(s);
       (window as any).dataLayer = (window as any).dataLayer || [];
-      function gtag(...args: any[]) { (window as any).dataLayer.push(args); }
+      function gtag() { (window as any).dataLayer.push(arguments); }
       gtag('js', new Date());
       gtag('config', 'G-4VQYB5F5VC');
     });
