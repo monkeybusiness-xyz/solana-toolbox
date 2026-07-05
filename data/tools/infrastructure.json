@@ -55,5 +55,13 @@
     "github": "https://github.com/rpcpool/yellowstone-grpc",
     "tags": ["grpc", "streaming", "geyser", "real-time"],
     "audience": "developer"
+  },
+  {
+    "name": "CoinStats API",
+    "description": "Data API returning enriched Solana balances, transaction history, and DeFi positions with built-in USD pricing across 120+ chains.",
+    "url": "https://coinstats.app/api/solana/",
+    "github": null,
+    "tags": ["api", "portfolio", "defi", "pricing"],
+    "audience": "developer"
   }
 ]
