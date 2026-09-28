@@ -25,6 +25,14 @@
     "audience": "developer"
   },
   {
+  "name": "Supanode",
+  "description": "High-performance Solana infrastructure for RPC, WebSocket, Yellowstone gRPC, dedicated nodes, TPU Sender, ShredStream, and historical data.",
+  "url": "https://supanode.xyz/services/solana",
+  "github": null,
+  "tags": ["rpc", "node-provider", "grpc", "websocket"],
+  "audience": "developer"
+},
+  {
     "name": "Shyft",
     "description": "Solana API platform with DAS, transaction parsing, and webhook support for indexing on-chain events.",
     "url": "https://shyft.to",
