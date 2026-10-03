@@ -63,5 +63,13 @@
     "github": null,
     "tags": ["api", "portfolio", "defi", "pricing"],
     "audience": "developer"
+  },
+  {
+    "name": "MadeOnSol",
+    "description": "Real-time Solana data and intelligence infrastructure: KOL activity, wallet, token and deployer analytics and normalized DEX data via REST, WebSockets, webhooks, SDKs and MCP, with optional x402/USDC access for AI agents.",
+    "url": "https://madeonsol.com/solana-api",
+    "github": "https://github.com/MadeOnSol",
+    "tags": ["api", "analytics", "websockets", "mcp"],
+    "audience": "developer"
   }
 ]
