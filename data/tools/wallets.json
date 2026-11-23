@@ -25,6 +25,14 @@
     "audience": "both"
   },
   {
+    "name": "Jupiter Wallet",
+    "description": "Self-custodial browser extension wallet from Jupiter, with a companion Jupiter Mobile app. Built-in swaps via Jupiter Ultra and Ledger, Keystone, and Trezor support.",
+    "url": "https://jup.ag/wallet",
+    "github": null,
+    "tags": ["browser-extension", "mobile", "swap", "hardware"],
+    "audience": "user"
+  },
+  {
     "name": "Ledger",
     "description": "Hardware wallet with Solana support via the Solana Ledger app. Maximum security for cold storage.",
     "url": "https://ledger.com",
