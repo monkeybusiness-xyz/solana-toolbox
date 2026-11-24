@@ -47,5 +47,13 @@
     "github": null,
     "tags": ["no-code", "spl", "creation"],
     "audience": "user"
+  },
+  {
+    "name": "DEXArea",
+    "description": "Non-custodial Solana toolkit for creating and managing SPL and Token-2022 assets, including metadata, authorities, liquidity, distribution, and SOL rent recovery.",
+    "url": "https://dexarea.com/solana",
+    "github": null,
+    "tags": ["no-code", "spl", "token-2022", "token-management", "liquidity"],
+    "audience": "user"
   }
 ]
