@@ -24,6 +24,14 @@
     "audience": "developer"
   },
   {
+    "name": "Guardian",
+    "description": "Security firm auditing Solana programs and EVM smart contracts, with invariant fuzzing on every audit. Public Solana reports include Jupiter and LayerZero.",
+    "url": "https://guardian.security",
+    "github": "https://github.com/GuardianAudits",
+    "tags": ["audit-firm", "security-research"],
+    "audience": "developer"
+  },
+  {
     "name": "Solana Security Workshop",
     "description": "Open-source collection of vulnerable Solana programs for learning common exploit patterns.",
     "url": "https://github.com/coral-xyz/sealevel-attacks",
